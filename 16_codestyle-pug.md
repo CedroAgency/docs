@@ -15,7 +15,7 @@
 ```jade
 .products
     .product
-        img.product__image(src="images/products/1.png" alt="")
+        img.product__image(assets="images/products/1.png" alt="")
         .product__title
             | Название товара
         .product__description
@@ -23,7 +23,7 @@
         .product__price
             | 12345
     .product
-        img.product__image(src="images/products/2.png" alt="")
+        img.product__image(assets="images/products/2.png" alt="")
         .product__title
             | Название товара
         .product__description
@@ -31,7 +31,7 @@
         .product__price
             | 45678
     .product
-        img.product__image(src="images/products/3.png" alt="")
+        img.product__image(assets="images/products/3.png" alt="")
         .product__title
             | Название товара
         .product__description
@@ -49,7 +49,7 @@
 .products
 
     .product
-        img.product__image(src="images/products/1.png" alt="")
+        img.product__image(assets="images/products/1.png" alt="")
 
         .product__title
             | Название товара
@@ -62,7 +62,7 @@
 
 
     .product
-        img.product__image(src="images/products/2.png" alt="")
+        img.product__image(assets="images/products/2.png" alt="")
 
         .product__title
             | Название товара
@@ -75,7 +75,7 @@
 
 
     .product
-        img.product__image(src="images/products/3.png" alt="")
+        img.product__image(assets="images/products/3.png" alt="")
 
         .product__title
             | Название товара
@@ -97,7 +97,7 @@
 ```jade
 .products
     .product
-        img.product__image(src="images/products/1.png" alt="")
+        img.product__image(assets="images/products/1.png" alt="")
         .product__title
             | Название товара
         .product__description
@@ -106,7 +106,7 @@
             | 12345
 
     .product
-        img.product__image(src="images/products/2.png" alt="")
+        img.product__image(assets="images/products/2.png" alt="")
         .product__title
             | Название товара
         .product__description
@@ -115,7 +115,7 @@
             | 45678
 
     .product
-        img.product__image(src="images/products/3.png" alt="")
+        img.product__image(assets="images/products/3.png" alt="")
         .product__title
             | Название товара
         .product__description
@@ -240,13 +240,13 @@ form(action="/login.php" method="post")
 **Неправильно:**
 
 ```jade
-img(src="images/photo.jpg")(alt="")
+img(assets="images/photo.jpg")(alt="")
 ```
 
 **Правильно:**
 
 ```jade
-img(src="images/photo.jpg" alt="")
+img(assets="images/photo.jpg" alt="")
 ```
 
 # Кавычки
@@ -272,13 +272,13 @@ input(type="text" name="name")
 **Неправильно:**
 
 ```jade
-img(src="images/logo.png", srcset="images/logo@2x.png 2x", alt="")
+img(assets="images/logo.png", assetsset="images/logo@2x.png 2x", alt="")
 ```
 
 **Правильно:**
 
 ```jade
-img(src="images/logo.png" srcset="images/logo@2x.png 2x" alt="")
+img(assets="images/logo.png" assetsset="images/logo@2x.png 2x" alt="")
 ```
 
 # Нестандартные атрибуты
@@ -343,7 +343,7 @@ input(
 В значение атрибута можно передать переменную или любое JS-выражение:
 
 ```jade
-img(src=`images/image-${image.number}.jpg` alt=image.description)
+img(assets=`images/image-${image.number}.jpg` alt=image.description)
 ```
 
 По умолчанию значения атрибутов экранируются.
@@ -457,7 +457,7 @@ mixin button()
 
 ```jade
 .product
-    img.product__image(src="images/products/1.png" alt="")
+    img.product__image(assets="images/products/1.png" alt="")
     .product__title Название товара
     .product__description Описание товара
     .product__price 12345
@@ -467,7 +467,7 @@ mixin button()
 
 ```jade
 .product
-    img.product__image(src="images/products/1.png" alt="")
+    img.product__image(assets="images/products/1.png" alt="")
     .product__title
         | Название товара
     .product__description
@@ -593,7 +593,7 @@ Pug позволяет использовать JS в шаблонах:
 script.
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    m=s.getElementsByTagName(o)[0];a.async=1;a.assets=g;m.parentNode.insertBefore(a,m)
     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
     ga('create', 'UA-123456789-00', 'auto');
@@ -657,7 +657,7 @@ each product in products
 
 ```jade
 each i in Array.from(Array(10).keys())
-    img(src=`images/frame-${i}.jpg` alt="")
+    img(assets=`images/frame-${i}.jpg` alt="")
 ```
 
 * `while` — не используется.
@@ -767,7 +767,7 @@ include pug/header
 .products
     .product
         a.product__image(href="/product/1")
-            img(src="/images/image-1.jpg" alt="")
+            img(assets="/images/image-1.jpg" alt="")
         a.product__title(href="/product/1")
             | Название товара
         .product__description
@@ -779,7 +779,7 @@ include pug/header
 
     .product
         a.product__image(href="/product/2")
-            img(src="/images/image-2.jpg" alt="")
+            img(assets="/images/image-2.jpg" alt="")
         a.product__title(href="/product/2")
             | Название товара
         .product__description
@@ -792,13 +792,13 @@ include pug/header
 
 **Правильно:**
 
-Создаем миксин в файле src/pug/mixins/product.pug
+Создаем миксин в файле assets/pug/mixins/product.pug
 
 ```jade
 mixin product(options)
     .product&attributes(attributes)
         a.product__image(href=options.href)
-            img(src=options.image alt="")
+            img(assets=options.image alt="")
         a.product__title(href=options.href)= options.title
         .product__description= options.description
         .product__price= options.price

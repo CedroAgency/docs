@@ -2,7 +2,7 @@
 
 ```text
 cedro-template
-├── src
+├── assets
 │   ├── images
 │   │   └── sprites
 │   │       ├── png
@@ -58,132 +58,132 @@ cedro-template
 └── webpack.config.js
 ```
 
-## `src`
+## `assets`
 
-В папке `src` хранятся исходные файлы проекта.
+В папке `assets` хранятся исходные файлы проекта.
 
-## `src/images`
+## `assets/images`
 
 Папка `images` предназначена для хранения изображений.
 При сборке файлы из данной папки попадают в `build/images`.
 
-## `src/images/sprites`
+## `assets/images/sprites`
 
-Папка `src/images/sprites` предназначена для хранения векторных (SVG) и растровых (PNG) иконок.
+Папка `assets/images/sprites` предназначена для хранения векторных (SVG) и растровых (PNG) иконок.
 
-## `src/images/sprites/png`
+## `assets/images/sprites/png`
 
-Папка `src/images/sprites/png` предназначена для хранения растровых иконок.
+Папка `assets/images/sprites/png` предназначена для хранения растровых иконок.
 При сборке файлы из данной папки объединяются в два спрайта: `build/images/sprites.png` и `build/images/sprites@2x.png`.
 
-## `src/images/sprites/svg`
+## `assets/images/sprites/svg`
 
-Папка `src/images/sprites/svg` предназначена для хранения векторных иконок.
+Папка `assets/images/sprites/svg` предназначена для хранения векторных иконок.
 При сборке файлы из данной папки объединяются в один спрайт: `build/images/sprites.svg`.
 
-## `src/js`
+## `assets/js`
 
-Папка `src/js` предназначена для хранения скриптов.
+Папка `assets/js` предназначена для хранения скриптов.
 
-## `src/js/vendor`
+## `assets/js/vendor`
 
-Папка `src/js/vendor` предназначена для хранения скриптов сторонних библиотек, которых нет в репозитории npm.
+Папка `assets/js/vendor` предназначена для хранения скриптов сторонних библиотек, которых нет в репозитории npm.
 
-## `src/js/main.js`
+## `assets/js/main.js`
 
-Файл `src/js/main.js` предназначен для хранения основной логики сайта.
+Файл `assets/js/main.js` предназначен для хранения основной логики сайта.
 При сборке данный файл попадает в `build/js`.
 
-## `src/js/vendor.js`
+## `assets/js/vendor.js`
 
-Файл `src/js/vendor.js` предназначен для подключения сторонних библиотек.
+Файл `assets/js/vendor.js` предназначен для подключения сторонних библиотек.
 
 При сборке данный файл попадет в `build/js`.
 
-## `src/pug`
+## `assets/pug`
 
-Папка `src/pug` предназначена для хранения шаблонов.
+Папка `assets/pug` предназначена для хранения шаблонов.
 
-## `src/pug/mixins`
+## `assets/pug/mixins`
 
-Папка `src/pug/mixins` предназначена для хранения Pug-миксин.
+Папка `assets/pug/mixins` предназначена для хранения Pug-миксин.
 
-## `src/pug/base.pug`
+## `assets/pug/base.pug`
 
-В файле `src/pug/base.pug` хранится базовый шаблон страниц сайта.
+В файле `assets/pug/base.pug` хранится базовый шаблон страниц сайта.
 
-## `src/pug/mixins.pug`
+## `assets/pug/mixins.pug`
 
-Файл `src/pug/mixins.pug` предназначен для подключения Pug-миксин из папки `src/pug/mixins`.
+Файл `assets/pug/mixins.pug` предназначен для подключения Pug-миксин из папки `assets/pug/mixins`.
 
-## `src/resources`
+## `assets/resources`
 
-Папка `src/resources` предназначена для хранения различных файлов проекта.
+Папка `assets/resources` предназначена для хранения различных файлов проекта.
 При сборке файлы из данной папки попадают в `build`.
 
-## `src/resources/fonts`
+## `assets/resources/fonts`
 
-Папка `src/resources/fonts` предназначена для хранения шрифтов.
+Папка `assets/resources/fonts` предназначена для хранения шрифтов.
 При сборке файлы из данной папки попадают в `build/fonts`.
 
-## `src/scss`
+## `assets/scss`
 
-Папка `src/scss` предназначена для хранения стилей.
+Папка `assets/scss` предназначена для хранения стилей.
 
-## `src/scss/functions`
+## `assets/scss/functions`
 
-Папка `src/scss/functions` предназначена для хранения SCSS-функций.
+Папка `assets/scss/functions` предназначена для хранения SCSS-функций.
 
-## `src/scss/mixins`
+## `assets/scss/mixins`
 
-Папка `src/scss/mixins` предназначена для хранения SCSS-миксин.
+Папка `assets/scss/mixins` предназначена для хранения SCSS-миксин.
 
-## `src/scss/vendor`
+## `assets/scss/vendor`
 
-Папка `src/scss/vendor` предназначена для хранения стилей сторонних библиотек, которых нет в репозитории npm.
+Папка `assets/scss/vendor` предназначена для хранения стилей сторонних библиотек, которых нет в репозитории npm.
 
-## `src/scss/_base.scss`
+## `assets/scss/_base.scss`
 
-Файл `src/scss/_base.scss` предназначен для хранения базовых стилей.
+Файл `assets/scss/_base.scss` предназначен для хранения базовых стилей.
 
-## `src/scss/_fonts.scss`
+## `assets/scss/_fonts.scss`
 
-Файл `src/scss/_fonts.scss` предназначен для подключения шрифтов.
+Файл `assets/scss/_fonts.scss` предназначен для подключения шрифтов.
 
-## `src/scss/_functions.scss`
+## `assets/scss/_functions.scss`
 
-Файл `src/scss/_functions.scss` предназначен для подключения функций из папки `src/scss/functions`.
+Файл `assets/scss/_functions.scss` предназначен для подключения функций из папки `assets/scss/functions`.
 
-## `src/scss/_mixins.scss`
+## `assets/scss/_mixins.scss`
 
-Файл `src/scss/_mixins.scss` предназначен для подключения миксин из папки `src/scss/mixins`.
+Файл `assets/scss/_mixins.scss` предназначен для подключения миксин из папки `assets/scss/mixins`.
 
-## `src/scss/_sprites.hbs`
+## `assets/scss/_sprites.hbs`
 
-`src/scss/_sprites.hbs` — шаблон, на основе которого генерируется содержимое файла `src/scss/_sprites.scss`.
+`assets/scss/_sprites.hbs` — шаблон, на основе которого генерируется содержимое файла `assets/scss/_sprites.scss`.
 
-## `src/scss/_sprites.scss`
+## `assets/scss/_sprites.scss`
 
-Файл `src/scss/_sprites.scss` предназначен для работы с PNG-спрайтами.
-Содержимое данного файла автоматически генерируется на основе шаблона `src/scss/_sprites.hbs` и иконок из папки `src/images/sprites/png`.
+Файл `assets/scss/_sprites.scss` предназначен для работы с PNG-спрайтами.
+Содержимое данного файла автоматически генерируется на основе шаблона `assets/scss/_sprites.hbs` и иконок из папки `assets/images/sprites/png`.
 
-## `src/scss/_variables.scss`
+## `assets/scss/_variables.scss`
 
-Файл `src/scss/_variables.scss` предназначен для хранения SCSS-переменных.
+Файл `assets/scss/_variables.scss` предназначен для хранения SCSS-переменных.
 
-## `src/scss/_vendor.scss`
+## `assets/scss/_vendor.scss`
 
-Файл `src/scss/_vendor.scss` предназначен для подключения стилей сторонних библиотек.
+Файл `assets/scss/_vendor.scss` предназначен для подключения стилей сторонних библиотек.
 
-## `src/scss/main.scss`
+## `assets/scss/main.scss`
 
-Файл `src/scss/main.scss` предназначен для хранения основных стилей сайта.
+Файл `assets/scss/main.scss` предназначен для хранения основных стилей сайта.
 При сборке данный файл преобразуется в CSS и сохраняется в `build/css` вместе с файлом `main.css.map`.
 
-## `src/index.pug`
+## `assets/index.pug`
 
-`src/index.pug` — шаблон главной страницы.
-При сборке все Pug-файлы из папки `src` преобразуются в HTML и сохраняются в `build`.
+`assets/index.pug` — шаблон главной страницы.
+При сборке все Pug-файлы из папки `assets` преобразуются в HTML и сохраняются в `build`.
 
 ## `.babelrc`
 

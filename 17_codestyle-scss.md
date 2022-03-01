@@ -856,7 +856,7 @@ $color-black: #000;
 * `box-decoration-break`
 * `box-shadow`
 * `box-sizing`
-* `src`
+* `assets`
 * `font`
 * `font-family`
 * `font-weight`

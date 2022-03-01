@@ -15,8 +15,8 @@
 * `lint:js` — проверяет JavaScript-файлы линтером [ESLint](http://eslint.org/).
 * `lint:pug` — проверяет Pug-файлы линтером [pug-lint](https://github.com/pugjs/pug-lint).
 * `lint:scss` — проверяет SCSS-файлы линтером [stylelint](https://stylelint.io/).
-* `optimize:svg` — оптимизирует и форматирует код SVG-файлов в папке `src/images`.
-* `optimize:images` — оптимизирует изображения в папке `src/images`.
+* `optimize:svg` — оптимизирует и форматирует код SVG-файлов в папке `assets/images`.
+* `optimize:images` — оптимизирует изображения в папке `assets/images`.
 * `zip` — создает архив проекта.
 
 ## Дополнительные параметры:

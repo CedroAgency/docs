@@ -1,26 +1,26 @@
 # Работа с изображениями
 
-Изображения следует хранить в папке `src/images`.
-При запуске задачи `images` файлы из папки `src/images` копируются в `build/images`.
+Изображения следует хранить в папке `assets/images`.
+При запуске задачи `images` файлы из папки `assets/images` копируются в `build/images`.
 
 ```text
 cedro-template
 ├── build
 │   └── images
-└── src
+└── assets
     └── images
 ```
 
 Для оптимизации изображений можно использовать задачу `optimize:images`.
 
-> `optimize:images` оптимизирует только исходные файлы из папки `src/images`!
+> `optimize:images` оптимизирует только исходные файлы из папки `assets/images`!
 
-Предварительно оптимизированные изображения рекомендуется хранить в папке `src/resources/images`.
+Предварительно оптимизированные изображения рекомендуется хранить в папке `assets/resources/images`.
 В таком случае при запуске задачи `optimize:images` данные файлы не будут затронуты.
 
 ```text
 cedro-template
-└── src
+└── assets
     └── resources
         └── images
 ```
@@ -30,11 +30,11 @@ cedro-template
 Работа с PNG-спрайтами строится следующим образом:
 
 1. Берем две версии иконки — обычную и retina (увеличенную в два раза).
-   Сохраняем в `src/images/sprites/png`:
+   Сохраняем в `assets/images/sprites/png`:
 
    ```text
    cedro-template
-   └── src
+   └── assets
        └── images
            └── sprites
                └── png
@@ -58,11 +58,11 @@ cedro-template
            └── sprites@2x.png
    ```
 
-   На основе предзаданного шаблона `src/scss/_sprites.hbs` генерируется файл `src/scss/_sprites.scss`, содержащий вспомогательную информацию о получившихся спрайтах:
+   На основе предзаданного шаблона `assets/scss/_sprites.hbs` генерируется файл `assets/scss/_sprites.scss`, содержащий вспомогательную информацию о получившихся спрайтах:
 
    ```text
    cedro-template
-   └── src
+   └── assets
        └── scss
            ├── _sprites.hbs
            └── _sprites.scss
@@ -73,7 +73,7 @@ cedro-template
 
    В сборке также содержится ряд SCSS-функций и миксин для работы со спрайтами.
 
-   `src/scss/functions/_sprites.scss`:
+   `assets/scss/functions/_sprites.scss`:
 
    ```scss
    @function sprite($name, $size: normal)  { /* ... */ }
@@ -86,7 +86,7 @@ cedro-template
    @function sprite-total-height($name, $size: normal) { /* ... */ }
    ```
 
-   `src/scss/mixins/_srites.scss`:
+   `assets/scss/mixins/_srites.scss`:
 
    ```scss
    @mixin sprite-width($name, $size: normal)  { /* ... */ }
@@ -126,11 +126,11 @@ cedro-template
 Принцип работы с SVG-спрайтами:
 
 1. Получаем векторные иконки в формате `.svg` (либо заранее подготовленные, либо экспортируем с помощью редактора).
-   Сохраняем в папку `src/images/sprites/svg`:
+   Сохраняем в папку `assets/images/sprites/svg`:
 
    ```text
    cedro-template
-   └── src
+   └── assets
        └── images
            └── sprites
                └── svg
@@ -153,7 +153,7 @@ cedro-template
    ```
 
    В сборке содержится Pug-миксин для подключения SVG-спрайтов.<br>
-   `src/pug/mixins/svg.pug`:
+   `assets/pug/mixins/svg.pug`:
 
    ```jade
     mixin svg(name)
