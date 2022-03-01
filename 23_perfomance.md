@@ -31,9 +31,9 @@
 **неправильно**
 
 ```js
-let $header = $('.header');
-let $headerNav = $('.header__nav');
-let $headerItem = $('.header__item')
+let $header = $('.header_js');
+let $headerNav = $('.header_nav_js');
+let $headerItem = $('.header_item_js')
 
 function getItemTopPosition() {
   $headerItem.each((index, item) => {
@@ -47,9 +47,9 @@ function getItemTopPosition() {
 **правильно**
 
 ```js
-let $header = $('.header');
-let $headerNav = $header.find('.header__nav');
-let $headerItem = $headerNav.find('.header__item');
+let $header = $('.header_js');
+let $headerNav = $header.find('.header_nav_js');
+let $headerItem = $headerNav.find('.header_item_js');
 
 let headerHalfHeight = $header.height() / 2;
 
@@ -68,7 +68,7 @@ function getItemTopPosition() {
 
 ```js
 function initPage() {
-  $('.element')
+  $('.element_js')
     .off('.some-event')
     .on('click.some-event', () => {
       // do smth
@@ -141,7 +141,7 @@ window.onscroll = throttle(() => {
 
 ```js
 function rebuildSmth() {
-  $('.elements').height(innerHeight);
+  $('.elements_js').height(innerHeight);
  // здесь выполняется какой-то супер сложный код
 }
 
@@ -152,7 +152,7 @@ window.onresize = rebuildSmth;
 
 ```js
 let windowHeight = innerHeight;
-let $elements = $('.elements');
+let $elements = $('.elements_js');
 
 function rebuildSmth() {
   $elements.height(innerHeight);

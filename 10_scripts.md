@@ -73,7 +73,7 @@ cedro-template
 **Неправильно:**
 
 ```js
-$('.elements').each((i, e) => {
+$('.elements_js').each((i, e) => {
     // ...
 });
 ```
@@ -81,7 +81,7 @@ $('.elements').each((i, e) => {
 **Правильно:**
 
 ```js
-$('.elements').each((index, element) => {
+$('.elements_js').each((index, element) => {
     // ...
 });
 ```
@@ -101,28 +101,28 @@ for (let i = 0; i < 10; i++) {
 **Неправильно:**
 
 ```js
-let element = $('.element');
+let element = $('.elements_js');
 ```
 
 **Правильно:**
 
 ```js
-let $element = $('.element');
+let $element = $('.elements_js');
 ```
 
 ### jQuery-селекторы
 
+Каждому селектору который предполагается для выборки в js нужно добавлять _js в конец класса
 Следует избегать дублирования jQuery-селекторов.
 Если обращение к элементу происходит многократно, то jQuery-объект можно сохранить в отдельную переменную, либо переписать код так, чтобы избежать дублирования.
-
 **Неправильно:**
 
 ```js
-$('.element').on('click', () => {
+$('.elements').on('click', () => {
     // ...
 });
 
-$('.element').on('mouseenter', () => {
+$('.elements_js').on('click', () => {
     // ...
 });
 ```
@@ -130,7 +130,33 @@ $('.element').on('mouseenter', () => {
 **Правильно:**
 
 ```js
-let $element = $('.element');
+let $element = $('.elements_js');
+
+$element.on('click', () => {
+    // ...
+});
+
+$element.on('mouseenter', () => {
+    // ...
+});
+```
+
+**Неправильно:**
+
+```js
+$('.elements_js').on('click', () => {
+    // ...
+});
+
+$('.elements_js').on('mouseenter', () => {
+    // ...
+});
+```
+
+**Правильно:**
+
+```js
+let $element = $('.elements_js');
 
 $element.on('click', () => {
     // ...
@@ -144,7 +170,7 @@ $element.on('mouseenter', () => {
 Или так:
 
 ```js
-$('.element')
+$('.elements_js')
     .on('click', () => {
         // ...
     })
@@ -196,7 +222,7 @@ gulp lint:js
 Пример использования:
 
 ```js
-var $form = $('.form')
+var $form = $('.form_js')
 $form.on("submit", function () {
   $.post('ajax.php', function (data) {
     $(".result").html(data);
@@ -236,11 +262,11 @@ gulp lint:js --fix
 Исправленный код:
 
 ```js
-let $form = $('.form');
+let $form = $('.form_js');
 
 $form.on('submit', () => {
     $.post('ajax.php', (data) => {
-        $('.result').html(data);
+        $('.result_js').html(data);
     });
 });
 ```

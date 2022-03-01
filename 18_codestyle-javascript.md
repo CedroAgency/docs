@@ -55,7 +55,7 @@ $('form').on('submit', (event) => {
 **Неправильно:**
 
 ```js
-$('.test__button').on('click', () => {
+$('.test__button_js').on('click', () => {
     if (test.currentQuestionIndex == test.questions.length - 1) {
         test.finish();
     }
@@ -67,7 +67,7 @@ $('.test__button').on('click', () => {
 **Правильно:**
 
 ```js
-$('.test__button').on('click', () => {
+$('.test__button_js').on('click', () => {
     if (test.currentQuestionIndex === test.questions.length - 1) {
         test.finish();
     }
@@ -107,9 +107,9 @@ $slider.css({
 
 ```js
 function showPage($page) {
-    let $currentPage = $('.page--current'),
-        $header = $('.header'),
-        $footer = $('.footer');
+    let $currentPage = $('.page--current_js'),
+        $header = $('.header_js'),
+        $footer = $('.footer_js');
 
     new TimelineMax()
         .to([
@@ -139,9 +139,9 @@ function showPage($page) {
 
 ```js
 function showPage($page) {
-    let $currentPage = $('.page--current');
-    let $header = $('.header');
-    let $footer = $('.footer');
+    let $currentPage = $('.page--current_js');
+    let $header = $('.header_js');
+    let $footer = $('.footer_js');
 
     new TimelineMax()
         .to([
@@ -172,7 +172,7 @@ function showPage($page) {
 **Неправильно:**
 
 ```js
-$('.js-scroll').on('click', (e) => {
+$('.scroll_js').on('click', (e) => {
     let $l = $(e.currentTarget);
     let h = $l.attr('href');
     let t = $(h).offset().top;
@@ -186,7 +186,7 @@ $('.js-scroll').on('click', (e) => {
 **Правильно:**
 
 ```js
-$('.js-scroll').on('click', (event) => {
+$('.scroll_js').on('click', (event) => {
     let $link = $(event.currentTarget);
     let href = $link.attr('href');
     let top = $(href).offset().top;
@@ -324,7 +324,7 @@ switch (number) {
 for (let i = 0; i < 10; i++) {
     y *= i;
 }
-$('.button').on('click', (event) => {
+$('.button_js').on('click', (event) => {
     event.preventDefault();
     run();
 });
@@ -385,7 +385,7 @@ for (let i = 0; i < 10; i++) {
     y *= i;
 }
 
-$('.button').on('click', (event) => {
+$('.button_js').on('click', (event) => {
     event.preventDefault();
     run();
 });
@@ -396,13 +396,13 @@ $('.button').on('click', (event) => {
 **Неправильно:**
 
 ```js
-$('.js-scroll-to').on('click', (event) => {
+$('.scroll-to_js').on('click', (event) => {
     event.preventDefault();
     scrollTo(event.currentTarget.href);
 });
 
 
-$('.js-close').on('click', (event) => {
+$('.close_js').on('click', (event) => {
     $(event.currentTarget).parent().removeClass('is-open');
 });
 ```
@@ -410,12 +410,12 @@ $('.js-close').on('click', (event) => {
 **Правильно:**
 
 ```js
-$('.js-scroll-to').on('click', (event) => {
+$('.scroll-to_js').on('click', (event) => {
     event.preventDefault();
     scrollTo(event.currentTarget.href);
 });
 
-$('.js-close').on('click', (event) => {
+$('.close_js').on('click', (event) => {
     $(event.currentTarget).parent().removeClass('is-open');
 });
 ```
