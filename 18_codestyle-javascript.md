@@ -55,7 +55,7 @@ $('form').on('submit', (event) => {
 **Неправильно:**
 
 ```js
-$('.test__button_js').on('click', () => {
+$('.js-test__button').on('click', () => {
     if (test.currentQuestionIndex == test.questions.length - 1) {
         test.finish();
     }
@@ -67,7 +67,7 @@ $('.test__button_js').on('click', () => {
 **Правильно:**
 
 ```js
-$('.test__button_js').on('click', () => {
+$('.js-test__button').on('click', () => {
     if (test.currentQuestionIndex === test.questions.length - 1) {
         test.finish();
     }
@@ -107,9 +107,9 @@ $slider.css({
 
 ```js
 function showPage($page) {
-    let $currentPage = $('.page--current_js'),
-        $header = $('.header_js'),
-        $footer = $('.footer_js');
+    let $currentPage = $('.js-page--current'),
+        $header = $('.js-header'),
+        $footer = $('.js-footer');
 
     new TimelineMax()
         .to([
@@ -139,9 +139,9 @@ function showPage($page) {
 
 ```js
 function showPage($page) {
-    let $currentPage = $('.page--current_js');
-    let $header = $('.header_js');
-    let $footer = $('.footer_js');
+    let $currentPage = $('.js-page--current');
+    let $header = $('.js-header');
+    let $footer = $('.js-footer');
 
     new TimelineMax()
         .to([
@@ -172,7 +172,7 @@ function showPage($page) {
 **Неправильно:**
 
 ```js
-$('.scroll_js').on('click', (e) => {
+$('.js-scroll').on('click', (e) => {
     let $l = $(e.currentTarget);
     let h = $l.attr('href');
     let t = $(h).offset().top;
@@ -186,7 +186,7 @@ $('.scroll_js').on('click', (e) => {
 **Правильно:**
 
 ```js
-$('.scroll_js').on('click', (event) => {
+$('.js-scroll').on('click', (event) => {
     let $link = $(event.currentTarget);
     let href = $link.attr('href');
     let top = $(href).offset().top;
@@ -324,7 +324,7 @@ switch (number) {
 for (let i = 0; i < 10; i++) {
     y *= i;
 }
-$('.button_js').on('click', (event) => {
+$('.js-button').on('click', (event) => {
     event.preventDefault();
     run();
 });
@@ -385,7 +385,7 @@ for (let i = 0; i < 10; i++) {
     y *= i;
 }
 
-$('.button_js').on('click', (event) => {
+$('.js-button').on('click', (event) => {
     event.preventDefault();
     run();
 });
@@ -396,13 +396,13 @@ $('.button_js').on('click', (event) => {
 **Неправильно:**
 
 ```js
-$('.scroll-to_js').on('click', (event) => {
+$('.js-scroll-to').on('click', (event) => {
     event.preventDefault();
     scrollTo(event.currentTarget.href);
 });
 
 
-$('.close_js').on('click', (event) => {
+$('.js-close').on('click', (event) => {
     $(event.currentTarget).parent().removeClass('is-open');
 });
 ```
@@ -410,12 +410,12 @@ $('.close_js').on('click', (event) => {
 **Правильно:**
 
 ```js
-$('.scroll-to_js').on('click', (event) => {
+$('.js-scroll-to').on('click', (event) => {
     event.preventDefault();
     scrollTo(event.currentTarget.href);
 });
 
-$('.close_js').on('click', (event) => {
+$('.js-close').on('click', (event) => {
     $(event.currentTarget).parent().removeClass('is-open');
 });
 ```

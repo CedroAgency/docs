@@ -73,7 +73,7 @@ cedro-template
 **Неправильно:**
 
 ```js
-$('.elements_js').each((i, e) => {
+$('.js-elements').each((i, e) => {
     // ...
 });
 ```
@@ -81,7 +81,7 @@ $('.elements_js').each((i, e) => {
 **Правильно:**
 
 ```js
-$('.elements_js').each((index, element) => {
+$('.js-elements').each((index, element) => {
     // ...
 });
 ```
@@ -101,13 +101,13 @@ for (let i = 0; i < 10; i++) {
 **Неправильно:**
 
 ```js
-let element = $('.elements_js');
+let element = $('.js-elements');
 ```
 
 **Правильно:**
 
 ```js
-let $element = $('.elements_js');
+let $element = $('.js-elements');
 ```
 
 ### jQuery-селекторы
@@ -122,7 +122,7 @@ $('.elements').on('click', () => {
     // ...
 });
 
-$('.elements_js').on('click', () => {
+$('.js-elements').on('click', () => {
     // ...
 });
 ```
@@ -130,7 +130,7 @@ $('.elements_js').on('click', () => {
 **Правильно:**
 
 ```js
-let $element = $('.elements_js');
+let $element = $('.js-elements');
 
 $element.on('click', () => {
     // ...
@@ -144,11 +144,11 @@ $element.on('mouseenter', () => {
 **Неправильно:**
 
 ```js
-$('.elements_js').on('click', () => {
+$('.js-elements').on('click', () => {
     // ...
 });
 
-$('.elements_js').on('mouseenter', () => {
+$('.js-elements').on('mouseenter', () => {
     // ...
 });
 ```
@@ -156,7 +156,7 @@ $('.elements_js').on('mouseenter', () => {
 **Правильно:**
 
 ```js
-let $element = $('.elements_js');
+let $element = $('.js-elements');
 
 $element.on('click', () => {
     // ...
@@ -170,7 +170,7 @@ $element.on('mouseenter', () => {
 Или так:
 
 ```js
-$('.elements_js')
+$('.js-elements')
     .on('click', () => {
         // ...
     })
@@ -222,7 +222,7 @@ gulp lint:js
 Пример использования:
 
 ```js
-var $form = $('.form_js')
+var $form = $('.js-form')
 $form.on("submit", function () {
   $.post('ajax.php', function (data) {
     $(".result").html(data);
@@ -262,11 +262,11 @@ gulp lint:js --fix
 Исправленный код:
 
 ```js
-let $form = $('.form_js');
+let $form = $('.js-form');
 
 $form.on('submit', () => {
     $.post('ajax.php', (data) => {
-        $('.result_js').html(data);
+        $('.js-result').html(data);
     });
 });
 ```
