@@ -17,7 +17,7 @@ npm install --save video.js
 ### CDN
 
 ```html
-<script assets="http://vjs.zencdn.net/6.9.0/video.js"></script>
+<script src="http://vjs.zencdn.net/6.9.0/video.js"></script>
 ```
 
 ```html
@@ -71,23 +71,23 @@ let video = videojs('my-video', {
 
 ## Методы
 
-* `assets(string|array)` - позволяет задать источник видео;
+* `src(string|array)` - позволяет задать источник видео;
 
    ```js
-   video.assets('/path/to/video.mp4');
+   video.src('/path/to/video.mp4');
 
-   video.assets([
+   video.src([
        {
            type: 'video/mp4',
-           assets: '/path/to/video.mp4',
+           src: '/path/to/video.mp4',
        },
        {
            type: 'video/webm',
-           assets: '/path/to/video.webm',
+           src: '/path/to/video.webm',
        },
        {
            type: 'video/ogg',
-           assets: '/path/to/video.ogg',
+           src: '/path/to/video.ogg',
        },
    ]);
    ```
@@ -128,8 +128,8 @@ let video = videojs('video', {
     poster: '/video/cover.jpg',
 });
 
-video.assets({
-    assets: '/video/video.mp4',
+video.src({
+    src: '/video/video.mp4',
     withCredentials: true,
 });
 
@@ -190,8 +190,8 @@ let video = videojs('my-video', {
     },
 });
 
-video.assets({
-    assets: 'video-name.m3u8',
+video.src({
+    src: 'video-name.m3u8',
     type: 'application/x-mpegURL',
     withCredentials: true,
 });
@@ -212,8 +212,8 @@ npm install --save videojs-contrib-quality-levels videojs-hls-quality-selector
 **Пример**
 
 ```js
-video.assets({
-    assets: `video.m3u8`,
+video.src({
+    src: `video.m3u8`,
     type: 'application/x-mpegURL',
     withCredentials: false,
 });
@@ -245,7 +245,7 @@ Never drink liquid nitrogen.
 video.addRemoteTextTrack({
     label: 'Russian',
     kind: 'captions',
-    assets: 'subtitles.vtt',
+    src: 'subtitles.vtt',
     default: true,
 }, false);
 ```

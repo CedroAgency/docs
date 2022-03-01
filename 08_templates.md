@@ -13,11 +13,11 @@ Pug предоставляет множество возможностей, уп
 * Наследование шаблонов.
 * Миксины.
 
-Шаблоны страниц размещаются в `assets`, а дополнительные файлы и миксины в `assets/pug`:
+Шаблоны страниц размещаются в `src`, а дополнительные файлы и миксины в `src/pug`:
 
 ```text
 cedro-template
-└── assets
+└── src
     ├── pug
     │   ├── mixins
     │   │   └── svg.pug
@@ -42,7 +42,7 @@ cedro-template
 
 ## Базовый шаблон и создание страниц
 
-В качестве базового шаблона используется `assets/pug/base.pug`.
+В качестве базового шаблона используется `src/pug/base.pug`.
 
 Пример наследования и использования шаблона:
 
@@ -158,7 +158,7 @@ block content
 
 ```jade
 append scripts
-    script(assets="/js/custom.js")
+    script(src="/js/custom.js")
 ```
 
 ### `body-end`
@@ -173,7 +173,7 @@ append scripts
 
 Проверка осуществляется с помощью задачи `lint:pug`.
 
-Пример использования (`assets/index.pug`):
+Пример использования (`src/index.pug`):
 
 ```jade
 extends pug/base
@@ -188,7 +188,7 @@ block content
 Результаты проверки:
 
 ```text
-cedro-template/assets/index.pug:7:14
+cedro-template/src/index.pug:7:14
     5|
     6| block content
   > 7|   a(href='#').link Ссылка
@@ -197,7 +197,7 @@ cedro-template/assets/index.pug:7:14
 
 All class literals must be written before any attribute blocks
 
-cedro-template/assets/index.pug:7:5
+cedro-template/src/index.pug:7:5
     5|
     6| block content
   > 7|   a(href='#').link Ссылка
@@ -206,7 +206,7 @@ cedro-template/assets/index.pug:7:5
 
 Invalid attribute quote mark found
 
-cedro-template/assets/index.pug:4:1
+cedro-template/src/index.pug:4:1
     2|
     3| append vars
   > 4|   - html.classList.push('page-index')
@@ -217,7 +217,7 @@ cedro-template/assets/index.pug:4:1
 
 Invalid indentation
 
-cedro-template/assets/index.pug:7:1
+cedro-template/src/index.pug:7:1
     5|
     6| block content
   > 7|   a(href='#').link Ссылка

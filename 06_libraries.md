@@ -16,10 +16,10 @@ npm install --save-dev gulp
 
 После установки необходимо подключить нужные файлы библиотеки:
 
-* скрипты — в `assets/js/vendor.js` или `assets/js/main.js`.
-* стили — в `assets/scss/_vendor.scss`.
-* изображения — в `assets/images`.
-* любые другие файлы — в `assets/resources`.
+* скрипты — в `src/js/vendor.js` или `src/js/main.js`.
+* стили — в `src/scss/_vendor.scss`.
+* изображения — в `src/images`.
+* любые другие файлы — в `src/assets`.
 
 Полный пример, описывающий установку библиотеки fancybox:
 
@@ -29,13 +29,13 @@ npm install --save-dev gulp
    npm install --save fancybox
    ```
 
-2. Подключение скриптов в файл `assets/js/vendor.js`:
+2. Подключение скриптов в файл `src/js/vendor.js`:
 
    ```js
    import 'fancybox';
    ```
 
-3. Подключение стилей в файл `assets/scss/_vendor.scss`:
+3. Подключение стилей в файл `src/scss/_vendor.scss`:
 
    ```scss
    $fancybox-image-url: "../images";
@@ -43,11 +43,11 @@ npm install --save-dev gulp
    @import "../../node_modules/fancybox/dist/scss/jquery.fancybox";
    ```
 
-4. Копирование изображений в `assets/images`:
+4. Копирование изображений в `src/images`:
 
    ```text
    cedro-template
-   └── assets
+   └── src
        ├── images
        │   ├── blank.gif
        │   ├── fancybox_loading.gif
@@ -59,4 +59,4 @@ npm install --save-dev gulp
        └── ...
    ```
 
-Если библиотека отсутствует в npm, либо её нужно модифицировать, то файлы следует скачать и закинуть в папки `assets/js/vendor` и `assets/scss/vendor`.
+Если библиотека отсутствует в npm, либо её нужно модифицировать, то файлы следует скачать и закинуть в папки `src/js/vendor` и `src/scss/vendor`.

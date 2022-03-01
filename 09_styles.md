@@ -4,11 +4,11 @@
 
 В сборке используется препроцессор [SCSS](http://sass-lang.com/) и PostCSS-плагин [Autoprefixer](https://autoprefixer.github.io/ru/).
 
-Стили размещаются в папке `assets/scss`:
+Стили размещаются в папке `src/scss`:
 
 ```text
 cedro-template
-└── assets
+└── src
     └── scss
         ├── functions
         │   ├── _responsive.scss
@@ -98,7 +98,7 @@ gulp lint:scss
 
 ### Переменные
 
-В файл `assets/scss/_variables.scss` следует выносить лишь основные переменные:
+В файл `src/scss/_variables.scss` следует выносить лишь основные переменные:
 
 * `font-family` для шрифтов. Пример:
 

@@ -3,16 +3,16 @@
 Дополнительными ресурсами считается все то, что не попадает ни под одну из предыдущих категорий файлов.
 Это могут быть различные favicon, шрифты, аудио, видео, документы и прочее.
 
-Подобные файлы следует хранить в папке `assets/resources`.
+Подобные файлы следует хранить в папке `src/assets`.
 
 ```text
 cedro-template
-└── assets
-    └── resources
+└── src
+    └── assets
         └── ...
 ```
 
-Задача `copy` копирует содержимое папки `assets/resources` в `build`:
+Задача `copy` копирует содержимое папки `src/assets` в `build`:
 
 ```bash
 gulp copy
@@ -36,8 +36,8 @@ gulp copy
 3. Открываем появившееся снизу экрана окно.
 4. Во вкладке `Customize` выбираем нужное начертание и языковую версию.
 5. Во вкладке `Embed` переключаемся в `@import` и копируем содержимое тега `<style>`.
-6. В файл `assets/scss/_fonts.scss` вставляем скопированный `@import`.
-7. В файл `assets/scss/_variables.scss` добавляем переменную `$font-family-roboto`.
+6. В файл `src/scss/_fonts.scss` вставляем скопированный `@import`.
+7. В файл `src/scss/_variables.scss` добавляем переменную `$font-family-roboto`.
 8. Используем переменную в стилях.
 
 ### Конвертирование шрифта и подключение с помощью `@font-face`
@@ -51,21 +51,21 @@ gulp copy
 * [onlinefontconverter.com](https://onlinefontconverter.com/)
 * [everythingfonts.com](https://everythingfonts.com/)
 
-Полученные файлы следует хранить в папке `assets/resources/fonts`:
+Полученные файлы следует хранить в папке `src/assets/fonts`:
 
 ```text
 cedro-template
-└── assets
-    └── resources
+└── src
+    └── assets
         └── fonts
             └── ...
 ```
 
-Подключение шрифтов происходит в файле `assets/scss/_fonts.scss`:
+Подключение шрифтов происходит в файле `src/scss/_fonts.scss`:
 
 ```scss
 @font-face {
-    assets: url("../fonts/my-font-regular.woff2") format("woff2"), url("../fonts/my-font-regular.woff") format("woff");
+    src: url("../fonts/my-font-regular.woff2") format("woff2"), url("../fonts/my-font-regular.woff") format("woff");
     font-family: "My Font";
     font-weight: 400;
     font-style: normal;
@@ -97,49 +97,49 @@ cedro-template
 
 ```scss
 @font-face {
-    assets: url("../fonts/my-font-light.woff") format("woff");
+    src: url("../fonts/my-font-light.woff") format("woff");
     font-family: "My Font";
     font-weight: 300;
     font-style: normal;
 }
 
 @font-face {
-    assets: url("../fonts/my-font-light-italic.woff") format("woff");
+    src: url("../fonts/my-font-light-italic.woff") format("woff");
     font-family: "My Font";
     font-weight: 300;
     font-style: italic;
 }
 
 @font-face {
-    assets: url("../fonts/my-font-regular.woff") format("woff");
+    src: url("../fonts/my-font-regular.woff") format("woff");
     font-family: "My Font";
     font-weight: 400;
     font-style: normal;
 }
 
 @font-face {
-    assets: url("../fonts/my-font-regular-italic.woff") format("woff");
+    src: url("../fonts/my-font-regular-italic.woff") format("woff");
     font-family: "My Font";
     font-weight: 400;
     font-style: italic;
 }
 
 @font-face {
-    assets: url("../fonts/my-font-bold.woff") format("woff");
+    src: url("../fonts/my-font-bold.woff") format("woff");
     font-family: "My Font";
     font-weight: 700;
     font-style: normal;
 }
 
 @font-face {
-    assets: url("../fonts/my-font-bold-italic.woff") format("woff");
+    src: url("../fonts/my-font-bold-italic.woff") format("woff");
     font-family: "My Font";
     font-weight: 700;
     font-style: italic;
 }
 ```
 
-После подключения шрифта в файл `assets/scss/_variables.scss` следует добавить переменную в формате `$font-family-[name]`.
+После подключения шрифта в файл `src/scss/_variables.scss` следует добавить переменную в формате `$font-family-[name]`.
 Пример:
 
 ```scss
