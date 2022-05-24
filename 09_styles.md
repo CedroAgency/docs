@@ -53,7 +53,7 @@ cedro-template
 
 ### БЭМ
 
-Для именования классов рекомендуется использовать [БЭМ-нотацию](https://ru.bem.info/methodology/naming-convention/).
+Для именования классов рекомендуется использовать [БЭМ-нотацию](https://ru.bem.info/methodology/naming-convention/). Вложенность не должна превышать трёх уровней, т.к. это ухудшает читаемость кода.
 
 ```scss
 .block {
