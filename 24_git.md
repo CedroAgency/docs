@@ -1,6 +1,6 @@
 # Работа с Git
 
-Для работы с репозиториями мы используем [Bitbucket](https://bitbucket.org).
+Для работы с репозиториями мы используем [Github](https://github.com/CedroAgency).
 
 ## Работа с ветками
 
