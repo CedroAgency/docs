@@ -25,3 +25,6 @@
 ## Анимации скролла
 * [AOS](https://github.com/michalsnik/aos)
 * [WOW.JS](https://wowjs.uk)
+
+## Паралакс скролла
+* [RELLAX.js](https://dixonandmoe.com/rellax/)
