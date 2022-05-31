@@ -217,7 +217,7 @@ gulp lint:scss
 ```scss
 .block {
     border-radius: 0;
-    width:30px;
+    width: 30px;
     height: 30px;
 
     &__element {

@@ -38,6 +38,8 @@ gulp copy
 7. В файл `src/scss/_variables.scss` добавляем переменную `$font-family-roboto`.
 8. Используем переменную в стилях.
 
+Или выкачиваем шрифт при помощи сервиса [Google Webfonts-Helper](https://google-webfonts-helper.herokuapp.com/fonts)
+
 ### Конвертирование шрифта и подключение с помощью `@font-face`
 
 Если шрифт отсутствует в Google Fonts, или нет подходящей языковой версии (отсутствует кириллица), то необходимо получить файл шрифта.
@@ -67,6 +69,7 @@ cedro-template
     font-family: "My Font";
     font-weight: 400;
     font-style: normal;
+    font-display: swap;
 }
 ```
 
