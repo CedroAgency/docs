@@ -53,7 +53,7 @@ cedro-template
 
 ### БЭМ
 
-Для именования классов рекомендуется использовать [БЭМ-нотацию](https://ru.bem.info/methodology/naming-convention/).
+Для именования классов рекомендуется использовать [БЭМ-нотацию](https://ru.bem.info/methodology/naming-convention/). Вложенность не должна превышать трёх уровней, т.к. это ухудшает читаемость кода.
 
 ```scss
 .block {
@@ -110,12 +110,12 @@ gulp lint:scss
 * Цвета. Пример:
 
   ```scss
-  $color-aqua-deep: #005741;
+  $color-main: #005741;
   $color-black: #000;
   $color-white: #fff;
   ```
 
-  Для именования цветов можно пользоваться [данным сервисом](http://chir.ag/projects/name-that-color/).
+> Для именования цветов рекомендуется использовать абстрации (main, accent, important, etc), а не названия конкретных цветов.
 
 Переменные, используемые лишь в одном блоке или компоненте следует записывать в том же файле, где они используются.
 
@@ -217,7 +217,7 @@ gulp lint:scss
 ```scss
 .block {
     border-radius: 0;
-    width:30px;
+    width: 30px;
     height: 30px;
 
     &__element {

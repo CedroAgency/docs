@@ -6,7 +6,7 @@
 npm install -g yo
 ```
 
-После yeoman, необходимо установить шаблон самой сборки:
+~~После yeoman, необходимо установить шаблон самой сборки:~~
 
 ```bash
 npm install -g generator-cedro-template
