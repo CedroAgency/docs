@@ -27,8 +27,6 @@ gulp copy
 
 ### Подключение шрифта с помощью Google Fonts
 
-Если шрифт и его требуемая языковая версия имеются в Google Fonts, то данный вариант подключения является приоритетным.
-
 Порядок подключения шрифта на примере Roboto:
 
 1. Находим шрифт — [Roboto](https://fonts.google.com/specimen/Roboto)
@@ -39,6 +37,8 @@ gulp copy
 6. В файл `src/scss/_fonts.scss` вставляем скопированный `@import`.
 7. В файл `src/scss/_variables.scss` добавляем переменную `$font-family-roboto`.
 8. Используем переменную в стилях.
+
+Или выкачиваем шрифт при помощи сервиса [Google Webfonts-Helper](https://google-webfonts-helper.herokuapp.com/fonts)
 
 ### Конвертирование шрифта и подключение с помощью `@font-face`
 
@@ -69,6 +69,7 @@ cedro-template
     font-family: "My Font";
     font-weight: 400;
     font-style: normal;
+    font-display: swap;
 }
 ```
 
