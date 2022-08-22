@@ -1,6 +1,9 @@
 ## Работа с AJAX
 * [AXIOS](https://github.com/axios/axios)
 
+## Прогресс загрузки страницы
+* [PACE](https://github.com/CodeByZach/pace)
+
 ## Карусель
 * [Swiper](https://swiperjs.com)
 * [Flicking](https://naver.github.io/egjs-flicking/)
@@ -26,6 +29,7 @@
 
 
 ## Анимации скролла
+* [GSAP](https://greensock.com/gsap/)
 * [AOS](https://github.com/michalsnik/aos)
 * [WOW.JS](https://wowjs.uk)
 
