@@ -14,7 +14,6 @@
 * [fslightbox](https://fslightbox.com)
 * [baguetteBox](https://feimosi.github.io/baguetteBox.js/)
 
-
 ## Дейтпикер
 * [Air Datepicker](https://air-datepicker.com/ru)
 * [Flatpickr](https://flatpickr.js.org)
