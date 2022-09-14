@@ -9,9 +9,9 @@
 * [Flicking](https://naver.github.io/egjs-flicking/)
 * [flickity](https://flickity.metafizzy.co)
 
-## Лайтбокс
-* [Fancybox](https://fancyapps.com/docs/ui/fancybox/)
+## Lightbox
 * [fslightbox](https://fslightbox.com)
+* [PhotoSwipe](https://github.com/dimsemenov/photoswipe)
 * [baguetteBox](https://feimosi.github.io/baguetteBox.js/)
 
 ## Дейтпикер
