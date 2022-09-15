@@ -10,6 +10,7 @@
 * [flickity](https://flickity.metafizzy.co)
 
 ## Lightbox
+* [glightbox](https://github.com/biati-digital/glightbox)
 * [fslightbox](https://fslightbox.com)
 * [PhotoSwipe](https://github.com/dimsemenov/photoswipe)
 * [baguetteBox](https://feimosi.github.io/baguetteBox.js/)
