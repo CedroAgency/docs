@@ -32,13 +32,13 @@
 **неправильно**
 
 ```js
-let $header = $('.js-header');
-let $headerNav = $('.js-header_nav');
-let $headerItem = $('.js-header_item')
+const $header = $('.js-header');
+const $headerNav = $('.js-header_nav');
+const $headerItem = $('.js-header_item');
 
 function getItemTopPosition() {
   $headerItem.each((index, item) => {
-    let itemTopPosition = $header.height() / 2 -   $(item).offset().top;
+    let itemTopPosition = $header.height() / 2 - $(item).offset().top;
 
     console.log(itemTopPosition);
   });
@@ -48,11 +48,11 @@ function getItemTopPosition() {
 **правильно**
 
 ```js
-let $header = $('.js-header');
-let $headerNav = $header.find('.header_nav_js');
-let $headerItem = $headerNav.find('.header_item_js');
+const $header = $('.js-header');
+const $headerNav = $header.find('.header_nav_js');
+const $headerItem = $headerNav.find('.header_item_js');
 
-let headerHalfHeight = $header.height() / 2;
+const headerHalfHeight = $header.height() / 2;
 
 function getItemTopPosition() {
   $headerItem.each((index, item) => {

@@ -35,3 +35,6 @@
 
 ## Паралакс скролла
 * [RELLAX.js](https://dixonandmoe.com/rellax/)
+
+## Кстомный скроллбар
+* [simplebar](https://github.com/Grsmto/simplebar/)
