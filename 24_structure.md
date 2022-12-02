@@ -43,6 +43,7 @@
 
 Структура папки /local/
 
+```
 ├── local
 │   ├── ajax
 │   ├── assets
@@ -61,6 +62,7 @@
 │   ├── templates
 │   │   ├── .default
 │   │   └── TEMPLATE
+```
 
 ## `/ajax/`
 
