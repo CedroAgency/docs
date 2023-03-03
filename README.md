@@ -10,6 +10,8 @@
 
 * **[ОБЩИЕ ТРЕБОВАНИЯ К РАЗРАБОТКЕ](00_back.md)**
 * [Шпаргалка для Git на сервере](24_git_install.md)
+* [Стартовый набор файлов для проекта на Bitrix](https://github.com/CedroAgency/backend_bx_starter_pack)
+* [Composer и Bitrix Framework](32_composer.md)
 * [Создание .webp изображений инфоблока "на лету"](29_webp-on-fly.md)
 
 ## Для фронта
