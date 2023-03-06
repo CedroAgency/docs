@@ -67,9 +67,9 @@ if (file_exists("$_SERVER[DOCUMENT_ROOT]/local/vendor/autoload.php")) {
 }
 ```
 ## Установка Composer'а ##
-В случае, если Composer установлен на сервере или хостинге глобально (можно проверить при помощи команды `composer about` в консоли), то команды можно выполнять в сокращенном виде, например, `composer install`. В случае, если `composer about` не срабатывает и нет возможности/желания/необходимости устанавливать его глобально, то загружаем phar архив по [ссылке](https://getcomposer.org/download/latest-stable/composer.phar). Размещаем файл в \local\composer.phar или \local\bin\composer.phar, в консоли делаем рабочей директорию local при помощи команды `cd` (рабочей необходимо сделать именно ту директорию, где располагается composer.json, а не composer.phar) и выполняем установку при помощи команды install:
+В случае, если Composer установлен на сервере или хостинге глобально (можно проверить при помощи команды `composer about` в консоли), то команды можно выполнять в сокращенном виде, например, `composer install`. В случае, если `composer about` не срабатывает и нет возможности/желания/необходимости устанавливать его глобально, то загружаем phar архив по [ссылке](https://getcomposer.org/download/latest-stable/composer.phar). Размещаем файл в \local\composer.phar или \local\bin\composer.phar, в консоли делаем рабочей директорию local при помощи команды `cd` (**рабочей необходимо сделать именно ту директорию, где располагается composer.json, а не composer.phar**) и выполняем установку при помощи команды `install`:
 ```
-php /prime.projects.cedro.agency/public_html/local/bin/composer.phar install
+php bin/composer.phar install
 ```
 К архиву должен быть указан полный путь, как в примере. Команда выполнит генерацию автозагрузки, установку пакетов и другие действия, согласно файлу конфигурации composer.json.  
 Можно изначально прописать пакеты для загрузки в файл composer.json:
@@ -82,17 +82,20 @@ php /prime.projects.cedro.agency/public_html/local/bin/composer.phar install
   }
 }
 ```
-Если вы изменяете файл composer.json уже после команды composer install, то после каждого изменения файла нужно выполнять команду update:
+Если вы изменяете файл composer.json уже после команды composer install, то после каждого изменения файла нужно выполнять команду `update`:
 ```
-php /prime.projects.cedro.agency/public_html/local/bin/composer.phar update
+php bin/composer.phar update
 ```
+### Важно ###
+После установки в папке с composer.json будет сгенерирован файл composer.lock, **не удаляйте его**, он фиксирует зависимости (и их версии) для установленных пакетов.
 ## Загрузка пакетов ##
-Проводится командой require:
+Проводится командой `require`:
 ```
-php /prime.projects.cedro.agency/public_html/local/bin/composer.phar require bcncommerce/json-stream
+php bin/composer.phar require bcncommerce/json-stream
 ```
-Название пакета состоит из двух частей разделённых косой чертой: названия поставщика (vendor name) и названия библиотеки. Можно найти на packagist.org, в корне репозиториев на GitHub часто лежит файл composer.json в котором есть параметр name с названием пакета.
+Название пакета состоит из двух частей разделённых косой чертой: названия поставщика (vendor name) и названия библиотеки. Можно найти на packagist.org, в корне репозиториев на GitHub часто лежит файл composer.json в котором есть параметр "name" с названием пакета.
 ## Автозагрузка своих классов и файлов ##
+При помощи Composer'а можно очень удобно обставить автозагрузку своих классов и файлов, в init.php, в таком случае, останется лишь подключение /local/vendor/autoload.php
 Пример блока автозагрузки:
 ```json
 {
@@ -107,7 +110,9 @@ php /prime.projects.cedro.agency/public_html/local/bin/composer.phar require bcn
         "Vendor\\Namespace\\": ""
     },
     "files": [
-        "src/MyLibrary/functions.php"
+        "lib/consts.php",
+        "lib/funs.php",
+        "lib/events.php"
     ]
   }
 }
@@ -117,9 +122,9 @@ files - позволяет автозагружать файлы, которые
 psr-4 - для подключения классов отвечающих PSR-4. Произведет сопоставление пространств имен с путями, в примере строка "Cedro\\": "lib/Classes/Cedro/" подключит классы с корневым namespace Cedro из папки /local/lib/Classes/Cedro/. Можно указать для сканирования несколько путей в массиве, как в строчке примера "Monolog\\": ["src/", "lib/"], либо более детализированное пространство как в строчке "Vendor\\Namespace\\": "".
 
 ### Важно ###
-После изменения блока autoload выполните команду dump-autoload, она обновит только автозагрузку (update установит и обновит пакеты).
+После изменения блока autoload выполните команду `dump-autoload`, она обновит только автозагрузку (update, помимо прочего, установит и обновит пакеты).
 ```
-php /prime.projects.cedro.agency/public_html/local/bin/composer.phar dump-autoload --optimize
+php bin/composer.phar dump-autoload --optimize
 ```
 ## Безопасность ##
 В стартовом наборе файлов файл /local/composer.json от прямого доступа из браузера защищает /local/.htaccess c следующими директивами:
