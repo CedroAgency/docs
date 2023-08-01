@@ -14,24 +14,31 @@
 
 ### Исходники
 
-https://github.com/Kenny-MGN/wepb_on_fly
+https://github.com/CedroAgency/backend_bx_starter_pack
 
 ### init.php
 
 в /local/php_interface/init.php региструем класс и подключаем файл обработчика событий:
 ```php
 <?
+// Если используется Composer:
+if (file_exists("$_SERVER[DOCUMENT_ROOT]/local/vendor/autoload.php")) {
+    require_once("$_SERVER[DOCUMENT_ROOT]/local/vendor/autoload.php");
+}
+// Если используется API Bitrix:
 Bitrix\Main\Loader::registerAutoLoadClasses(
-	null, ['Cedro\WebpController' => '/local/classes/WebpController.php']
+	null, ['Cedro\Image\WebpController' => '/local/lib/Classes/Cedro/Image/WebpController.php']
 );
-require_once ('include/events.php');
+if (file_exists("$_SERVER[DOCUMENT_ROOT]/local/lib/events.php")) {
+	require_once ("$_SERVER[DOCUMENT_ROOT]/local/lib/events.php");
+}
 ```
-Соответственно, файл обработчика должен располагаться в /local/php_interface/include/events.php
-а файл с классом в /local/classes/WebpController.php
+Соответственно, файл обработчика должен располагаться в /local/lib/events.php
+а файл с классом в /local/lib/Classes/Cedro/Image/WebpController.php
 
 ### Агент
 
-Лучше всего выбирать время, когда на сервер приходится наименьшая нагрузка (низкая посещаемость сайта).
+Лучше всего выбирать время, когда на сервер приходится наименьшая нагрузка (низкая посещаемость сайта). Также желательно перевести агент на Cron.
 Метод \Cedro\WebpController::startAudit() можно вызвать с тестовой страницы для однократной обработки необходимых каталогов.
 
 ![Пример подключения:](images/29/agent.png)
@@ -43,7 +50,7 @@ require_once ('include/events.php');
 
 ```php
 <?
-use Cedro\WebpController;
+use Cedro\Image\WebpController;
 ?>
 <img src="<?=WebpController::getWebpSrc($arItem['DETAIL_PICTURE']['SRC'])?>">
 ```
@@ -53,38 +60,34 @@ use Cedro\WebpController;
 ```php
 <?
 
-use Cedro\WebpController;
+use Bitrix\Main\Loader;
+use Cedro\Image\WebpController;
 
-// Регистрация обработчиков событий, колбэки являются методами класса IBlockEventsHandler
 AddEventHandler('iblock', 'OnAfterIBlockElementAdd', ['IBlockEventsHandler', 'onIBlockElementAdd']);
 AddEventHandler('iblock', 'OnBeforeIBlockElementDelete', ['IBlockEventsHandler', 'onIBlockElementDelete']);
 AddEventHandler('iblock', 'OnBeforeIBlockElementUpdate', ['IBlockEventsHandler', 'onBeforeIBlockElementUpdate']);
 AddEventHandler('iblock', 'OnAfterIBlockElementUpdate', ['IBlockEventsHandler', 'onAfterIBlockElementUpdate']);
+AddEventHandler('iblock', 'OnAfterIBlockSectionUpdate', ['IBlockEventsHandler', 'onAfterIBlockSectionUpdate']);
 
 class IBlockEventsHandler {
 	
-	// Создание webp версий изображений для новых элементов инфоблока
-	function onIBlockElementAdd(&$arFields) {
-		WebpController::createWebpByPictureID($arFields["PREVIEW_PICTURE_ID"]);
-		WebpController::createWebpByPictureID($arFields["DETAIL_PICTURE_ID"]);
+	public static function onIBlockElementAdd(&$arFields) {
+		WebpController::createWebpByPictureID($arFields['PREVIEW_PICTURE_ID']);
+		WebpController::createWebpByPictureID($arFields['DETAIL_PICTURE_ID']);
+	}
+   
+	public static function onIBlockElementDelete($iblockElementID) {
+        Loader::includeModule('iblock');
+        $CIBlockRes = CIBlockElement::GetByID($iblockElementID);
+        if ($arFields = $CIBlockRes->GetNext()) {
+            $detailPictureID = $arFields['DETAIL_PICTURE'];
+            $previewPictureID = $arFields['PREVIEW_PICTURE'];
+        }
+        if ($detailPictureID) WebpController::deleteWebpByID($detailPictureID);
+        if ($previewPictureID) WebpController::deleteWebpByID($previewPictureID);
 	}
 	
-	// Обработка при удалении элемента инфоблока: удаляются webp версии, если они имелись
-	function onIBlockElementDelete($iblockElementID) {
-		if (CModule::IncludeModule('iblock')) {
-			$CIBlockRes = CIBlockElement::GetByID($iblockElementID);
-			if ($arFields = $CIBlockRes->GetNext()) {
-				$detailPictureID = $arFields['DETAIL_PICTURE'];
-				$previewPictureID = $arFields['PREVIEW_PICTURE'];
-			}
-			if ($detailPictureID) WebpController::deleteWebpByID($detailPictureID);
-			if ($previewPictureID) WebpController::deleteWebpByID($previewPictureID);
-		}
-	}
-	
-	/* Перед изменением элемента инфоблока: если изображение удаляется из поля или меняется на новое, то вызывается
-        метод webpController::deleteWEBP() для удаления webp версии */
-	function onBeforeIBlockElementUpdate(&$arFields) {
+	public static function onBeforeIBlockElementUpdate(&$arFields) {
 		$arDetailPicture = $arFields['DETAIL_PICTURE'];
 		$arPreviewPicture = $arFields['PREVIEW_PICTURE'];
 		if ($arDetailPicture) {
@@ -99,19 +102,81 @@ class IBlockEventsHandler {
 		}
 	}
 	
-	/* После изменения элемента инфоблока: если загружено новое изображение в поле, то вызывается метод
-        webpController::createWEBP() для создания webp версии изображения */
-	function onAfterIBlockElementUpdate(&$arFields) {
+	public static function onAfterIBlockElementUpdate(&$arFields) {
+        
+    # Обновление значения блокировки в соответствующем HL блоке
+        $arLockPropInfo = getIBlockElementPropertyInfo($arFields['ID'], CATALOG_IBLOCK_ID, 'LOCK_FROM_IMPORT');
+        if ($arLockPropInfo) {
+            $lockNewValue = ($arLockPropInfo['VALUE_XML_ID'] === 'Y') ? '1' : '0';
+            $entityDC = getHighloadEntityDataClass(CATALOG_ELEMENTS_IMPORT_INFO_HL_ID);
+            $arElementInfo = $entityDC::getList([
+                'filter' => ['UF_IBLOCK_ELEMENT_ID' => $arFields['ID']],
+                'select' => ['ID', 'UF_LOCK_FROM_IMPORT']
+            ])->Fetch();
+            if (is_array($arElementInfo) && ($arElementInfo['UF_LOCK_FROM_IMPORT'] != $lockNewValue)) {
+                $arNewData = ['UF_LOCK_FROM_IMPORT' => $lockNewValue];
+                $entityDC::update($arElementInfo['ID'], $arNewData);
+            }
+        }
+        unset(
+            $arLockPropInfo,
+            $lockNewValue,
+            $entityDC,
+            $arElementInfo,
+            $arNewData
+        );
+    # /Обновление значения блокировки в HL блоке
+        
+    # WebpController
 		if ($arFields['DETAIL_PICTURE_ID']) WebpController::createWebpByPictureID($arFields['DETAIL_PICTURE_ID']);
 		if ($arFields['PREVIEW_PICTURE_ID']) WebpController::createWebpByPictureID($arFields['PREVIEW_PICTURE_ID']);
+    # /WebpController
 	}
+    
+    // Переключает в HLB активность раздела при её изменении в админке инфоблока
+    public static function onAfterIBlockSectionUpdate($arFields) {
+        if ($arFields['IBLOCK_ID'] == CATALOG_IBLOCK_ID) {
+            $entityDataClass = getHighloadEntityDataClass(IMPORT_SETTINGS_HL_ID);
+            $queryResData = $entityDataClass::getList([
+                'filter' => ['UF_SECTION' => $arFields['ID']],
+                'select' => ['ID', 'UF_IS_SECTION_ACTIVE']
+            ])->Fetch();
+            if ($queryResData) {
+                if ($arFields['ACTIVE'] === 'Y') {
+                    $binActivityInIBlock = '1';
+                }
+                elseif ($arFields['ACTIVE'] === 'N') {
+                    $binActivityInIBlock = '0';
+                }
+                
+                if ($queryResData['UF_IS_SECTION_ACTIVE'] !== $binActivityInIBlock) {
+                    $hlRecordID = (int)$queryResData['ID'];
+                    $arBindData = [
+                        'UF_IS_SECTION_ACTIVE' => $binActivityInIBlock,
+                        'UF_LAST_TIME_MODIFIED' => time()
+                    ];
+                    $resObj = $entityDataClass::update($hlRecordID, $arBindData);
+                    $updRes = $resObj->isSuccess();
+                    if (!$updRes) {
+                        CEventLog::Add([
+                            'SEVERITY' => 'ERROR',
+                            'AUDIT_TYPE_ID' => 'Ошибка переключения активности раздела',
+                            'MODULE_ID' => 'highloadblock',
+                            'ITEM_ID' => "IBlock ID: $arFields[IBLOCK_ID], HLB Record ID: $queryResData[ID]",
+                            'DESCRIPTION' => 'Ошибка переключения активности раздела каталога в Highload блоке'
+                        ]);
+                    }
+                }
+            } 
+        }
+    }
 }
 ```
 
 ## Код класса
 
 ```php
-<?namespace Cedro;
+<?namespace Cedro\Image;
 
 use CFile;
 
@@ -123,16 +188,20 @@ class WebpController {
 	// Три записи в каталоге: помимо вышеуказанных, добавился файл
 	private const ONE_ELEMENT_IN_DIR = 3;
 	
+	private static $uploadDirPath = '/upload';
+	
 	private static $iblockUploadDirPath = '/upload/iblock';
 	
 	private static $iblockResizeUploadDirPath = '/upload/resize_cache/iblock';
+	
+	private static $iblockVoteUploadDirPath = '/upload/vote';
 	
 	// Уровень качества указывается в виде числа от 0 (наихудшее) до 100 (наилучшее)
 	private static $outputQuality = 85;
 	
 	/* Суффикс и расширение сжатого в webp файла, используется в качестве идентификатора
 		сгенерированного данным скриптом webp файла */
-	private static $generatedWebpIdentifier = '_gen.webp';
+	public static $generatedWebpIdentifier = '_cedg.webp';
 	
 	// Поддерживаемые форматы изображений для конвертации в webp 
 	private static $compatibleMIMEtypes = [
@@ -152,11 +221,16 @@ class WebpController {
 	
 	// Конвертация в webp при помощи библиотеки GD
 	private static function createWebp($arPicturePathInfo) {
-		// Функция для конвертации jpg и jpeg в webp носит название imagecreatefromjpeg()
 		if ($arPicturePathInfo['extension'] == 'jpg') $arPicturePathInfo['extension'] = 'jpeg';
 		$GDCreateFunctionName = "imagecreatefrom$arPicturePathInfo[extension]";
 		$GDimage = call_user_func($GDCreateFunctionName, $arPicturePathInfo['path']);
-		imagewebp($GDimage, $arPicturePathInfo['webp_full_path'], self::$outputQuality);
+		if (imagepalettetotruecolor($GDimage)) {
+		    if ($arPicturePathInfo['extension'] == 'png' || $arPicturePathInfo['extension'] == 'avif') {
+			imagealphablending($GDimage, false);
+			imagesavealpha($GDimage, true);
+		    }
+		    imagewebp($GDimage, $arPicturePathInfo['webp_full_path'], self::$outputQuality);
+		}
 		imagedestroy($GDimage);
 	}
 	
@@ -170,8 +244,10 @@ class WebpController {
 				'SUBDIR' => $arFileInfo['SUBDIR']
 			]
 		);
-		/* 	Проверка на то, что в таблице b_file данный графический файл имеет единственный ID,
-			т.е не используется в других элементах инфоблока */
+		/* 	
+		    Проверка на то, что в таблице b_file данный графический файл имеет единственный ID,
+				т.е не используется в других элементах инфоблока 
+		*/
 		if ($queryRes->AffectedRowsCount() === 1) {
 			$arPictureInfo = self::getPicturePathArray($arFileInfo['SRC']);
 			$webpPath = $arPictureInfo['webp_full_path'];
@@ -208,9 +284,8 @@ class WebpController {
 	
 	// Функция для запуска агента
 	public static function startAudit() {
-		self::bypassDirAndAuditWebp($_SERVER['DOCUMENT_ROOT'] . self::$iblockUploadDirPath);
-		// self::bypassDirAndAuditWebp($_SERVER['DOCUMENT_ROOT'] . self::$iblockResizeUploadDirPath);
-		return '\Cedro\WebpController::startAudit();';
+		self::bypassDirAndAuditWebp($_SERVER['DOCUMENT_ROOT'] . self::$uploadDirPath);
+		return '\Cedro\Image\WebpController::startAudit();';
 	}
 	
 	// Рекурсивная функция для обхода переданного в параметр каталога
