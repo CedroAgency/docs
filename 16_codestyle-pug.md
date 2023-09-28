@@ -1,14 +1,12 @@
 # Синтаксис и форматирование
 
-* Для отступов используется символ табуляции `\t`.
+* Для отступов используется 2 пробела
 
-* Для переноса строк используется символ `\n` (LF).
-
-* Не должно быть пробелов в конце строк.
+* Не должно быть пробелов в конце строк или между строками
 
 * Максимальная длина строки — 120 символов.
 
-* Между большими блоками кода следует оставлять одну пустую строку.
+* Между большими блоками кода следует оставлять одну пустую строку или дополнять комментарием
 
 **Неправильно** (нет пустых строк):
 
@@ -22,22 +20,6 @@
             | Описание товара
         .product__price
             | 12345
-    .product
-        img.product__image(src="images/products/2.png" alt="")
-        .product__title
-            | Название товара
-        .product__description
-            | Описание товара
-        .product__price
-            | 45678
-    .product
-        img.product__image(src="images/products/3.png" alt="")
-        .product__title
-            | Название товара
-        .product__description
-            | Описание товара
-        .product__price
-            | 90123
 .navigation
     a.navigation__link(href="/catalog?page=2")
         | Следующая страница
@@ -61,32 +43,6 @@
             | 12345
 
 
-    .product
-        img.product__image(src="images/products/2.png" alt="")
-
-        .product__title
-            | Название товара
-
-        .product__description
-            | Описание товара
-
-        .product__price
-            | 45678
-
-
-    .product
-        img.product__image(src="images/products/3.png" alt="")
-
-        .product__title
-            | Название товара
-
-        .product__description
-            | Описание товара
-
-        .product__price
-            | 90123
-
-
 .navigation
     a.navigation__link(href="/catalog?page=2")
         | Следующая страница
@@ -98,30 +54,9 @@
 .products
     .product
         img.product__image(src="images/products/1.png" alt="")
-        .product__title
-            | Название товара
-        .product__description
-            | Описание товара
-        .product__price
-            | 12345
-
-    .product
-        img.product__image(src="images/products/2.png" alt="")
-        .product__title
-            | Название товара
-        .product__description
-            | Описание товара
-        .product__price
-            | 45678
-
-    .product
-        img.product__image(src="images/products/3.png" alt="")
-        .product__title
-            | Название товара
-        .product__description
-            | Описание товара
-        .product__price
-            | 90123
+        .product__title Название товара
+        .product__description Описание товара
+        .product__price 12345
 
 .navigation
     a.navigation__link(href="/catalog?page=2")
@@ -130,7 +65,7 @@
 
 # Однострочная вложенность
 
-Как правило теги вкладываются друг на разных строках:
+Как правило теги вкладываются с отступом на разных строках:
 
 ```jade
 ul
@@ -221,7 +156,6 @@ ul.menu#top-menu
 #top-menu
 ```
 
-Атрибут `id` используется только в случае, если он задается с помощью переменной.
 
 # Атрибуты
 
@@ -231,8 +165,7 @@ ul.menu#top-menu
 form(action="/login.php" method="post")
     input(type="email" name="email" placeholder="E-mail")
     input(type="password" name="password" placeholder="Пароль")
-    button(type="submit")
-        | Войти
+    button(type="submit") Войти
 ```
 
 Не следует дублировать запись атрибутов.
@@ -290,36 +223,30 @@ img(src="images/logo.png" srcset="images/logo@2x.png 2x" alt="")
 
 ```jade
 // Не скомпилируется
-button(type="button" (click)="send()")
-    | Отправить
+button(type="button" (click)="send()") Отправить
 ```
 
 ```jade
-button(type="button" v-on:click="send()")
-    | Отправить
+button(type="button" v-on:click="send()") Отправить
 ```
 
 ```jade
-button(type="button" @click="send()")
-    | Отправить
+button(type="button" @click="send()") Отправить
 ```
 
 **Правильно:**
 
 ```jade
 // Не скомпилируется
-button(type="button" '(click)'="send()")
-    | Отправить
+button(type="button" '(click)'="send()") Отправить
 ```
 
 ```jade
-button(type="button" 'v-on:click'="send()")
-    | Отправить
+button(type="button" 'v-on:click'="send()") Отправить
 ```
 
 ```jade
-button(type="button" '@click'="send()")
-    | Отправить
+button(type="button" '@click'="send()") Отправить
 ```
 
 # Многострочная запись атрибутов
@@ -451,7 +378,7 @@ mixin button()
 
 # Вывод текста
 
-Текст следует выводить на следующей строке с помощью символа `|`.
+Текст следует выводить на следующей строке с помощью символа `|`, если текста много и это улучшит читаемость
 
 **Неправильно:**
 
@@ -459,7 +386,7 @@ mixin button()
 .product
     img.product__image(src="images/products/1.png" alt="")
     .product__title Название товара
-    .product__description Описание товара
+    .product__description Lorem Ipsum is simply dummy text of the printing and typesetting industry typesetting industry.
     .product__price 12345
 ```
 
@@ -468,12 +395,10 @@ mixin button()
 ```jade
 .product
     img.product__image(src="images/products/1.png" alt="")
-    .product__title
-        | Название товара
+    .product__title Название товара
     .product__description
-        | Описание товара
-    .product__price
-        | 12345
+        | Lorem Ipsum is simply dummy text of the printing and typesetting industry typesetting industry.
+    .product__price 12345
 ```
 
 В случае, **если** строк в файле довольно много и их сокращение **увеличивает читаемость**, то допустимо использовать
@@ -627,7 +552,7 @@ if products.length
         // ...
 ```
 
-* `unless` — предназначена для условий, но не используется. Вместо нее следует использовать `if`.
+* `unless` — предназначена для замены условий c отрицанием `if !someVar`. ПОвышает читаемость
 
 * `case` — предназначена для условий. Практически не используется.
 
