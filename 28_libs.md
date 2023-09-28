@@ -24,6 +24,9 @@
 * [Slim Select](http://slimselectjs.com)
 
 
+## Валидация форм
+* [JustValidate](https://just-validate.dev)
+
 ## Input cлайдер
 * [NoUiSlider](https://refreshless.com/nouislider/)
 
@@ -36,5 +39,5 @@
 ## Паралакс скролла
 * [RELLAX.js](https://dixonandmoe.com/rellax/)
 
-## Кстомный скроллбар
+## Кастомный скроллбар
 * [simplebar](https://github.com/Grsmto/simplebar/)
