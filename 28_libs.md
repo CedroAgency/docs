@@ -19,17 +19,14 @@
 * [Air Datepicker](https://air-datepicker.com/ru)
 * [Flatpickr](https://flatpickr.js.org)
 
-
 ## Селекты
 * [Slim Select](http://slimselectjs.com)
-
 
 ## Валидация форм
 * [JustValidate](https://just-validate.dev)
 
 ## Input cлайдер
 * [NoUiSlider](https://refreshless.com/nouislider/)
-
 
 ## Анимации скролла
 * [GSAP](https://greensock.com/gsap/)
@@ -41,3 +38,6 @@
 
 ## Кастомный скроллбар
 * [simplebar](https://github.com/Grsmto/simplebar/)
+
+## Отключение скролла
+* [tua-body-scroll-lock](https://github.com/tuax/tua-body-scroll-lock)
