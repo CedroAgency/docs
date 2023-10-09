@@ -16,39 +16,39 @@ npm install --save-dev gulp
 
 После установки необходимо подключить нужные файлы библиотеки:
 
-* скрипты — в `src/js/vendor.js` или `src/js/main.js`.
-* стили — в `src/scss/_vendor.scss`.
-* изображения — в `src/images`.
-* любые другие файлы — в `src/assets`.
+* скрипты — в `src/js/assets.js` или `src/js/modules/[modul_name].js`
+* стили — в `src/scss/styles.scss` и при необходимости дополнить файлом `src/scss/vendors/[lib_name].scss`
+* изображения — в `src/img`
 
 Полный пример, описывающий установку библиотеки fancybox:
 
 1. Установка:
 
    ```bash
-   npm install --save fancybox
+   npm install --save @fancyapps/ui
    ```
 
-2. Подключение скриптов в файл `src/js/vendor.js`:
+2. Подключение скриптов в файл `src/js/modules/[modulname].js`:
 
    ```js
-   import 'fancybox';
+   import { Fancybox } from "@fancyapps/ui"
    ```
 
 3. Подключение стилей в файл `src/scss/_vendor.scss`:
 
    ```scss
-   $fancybox-image-url: "../images";
+   $fancybox-image-url: "../img";
 
-   @import "../../node_modules/fancybox/dist/scss/jquery.fancybox";
+   @import "../../node_modules/@fancyapps/ui/dist/fancybox/fancybox";
+   @import "vendors/fancybox-override";
    ```
 
-4. Копирование изображений в `src/images`:
+4. Копирование изображений в `src/img`:
 
    ```text
    cedro-template
    └── src
-       ├── images
+       ├── img
        │   ├── blank.gif
        │   ├── fancybox_loading.gif
        │   ├── fancybox_loading@2x.gif
@@ -59,4 +59,4 @@ npm install --save-dev gulp
        └── ...
    ```
 
-Если библиотека отсутствует в npm, либо её нужно модифицировать, то файлы следует скачать и закинуть в папки `src/js/vendor` и `src/scss/vendor`.
+Если библиотека отсутствует в npm, либо её нужно модифицировать, то файлы следует скачать и закинуть в папки `src/js/vendors` и `src/scss/vendors`.
