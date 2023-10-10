@@ -1,82 +1,52 @@
 # Синтаксис и форматирование
 
-* Для отступов используется символ табуляции `\t`.
-
-* Для переноса строк используется символ `\n` (LF).
-
-* Не должно быть пробелов в конце строк.
-
+* Для отступов используется 2 пробела
+* Не должно быть пробелов и непечатаемых символов в конце строк и между строками
 * Максимальная длина строки — 120 символов.
+* Максимальное количество строк в одном файле 350
+* В конце файла обязательна пустая строка
 
-* Всегда ставится `;`.
 
+### Не ставим `;` в конце выражений
 **Неправильно:**
-
-```js
-$('form').on('submit', (event) => {
-    let $form = $(event.currentTarget)
-
-    event.preventDefault()
-
-    if (validate($form)) {
-        $.post($form.attr('action'))
-            .done(() => {
-                showSuccessModal()
-            })
-            .fail(() => {
-                showErrorModal()
-            })
-    }
-})
-```
-
-**Правильно:**
 
 ```js
 $('form').on('submit', (event) => {
     let $form = $(event.currentTarget);
 
     event.preventDefault();
-
-    if (validate($form)) {
-        $.post($form.attr('action'))
-            .done(() => {
-                showSuccessModal();
-            })
-            .fail(() => {
-                showErrorModal();
-            });
-    }
-});
-```
-
-* Используется строгое сравнение `===` и `!==` (вместо `==` и `!=`).
-
-**Неправильно:**
-
-```js
-$('.js-test__button').on('click', () => {
-    if (test.currentQuestionIndex == test.questions.length - 1) {
-        test.finish();
-    }
-
-    test.answer();
 });
 ```
 
 **Правильно:**
 
 ```js
-$('.js-test__button').on('click', () => {
-    if (test.currentQuestionIndex === test.questions.length - 1) {
-        test.finish();
-    }
+$('form').on('submit', (e) => {
+    let $form = $(e.currentTarget)
 
-    test.answer();
-});
+    e.preventDefault()
+})
 ```
 
-* Не должно быть неиспользуемых переменных.
+### Используем строгое сравнение `===` и `!==` (вместо `==` и `!=`).
+
+**Неправильно:**
+
+```js
+if (test.currentQuestionIndex == test.questions.length - 1) {
+    test.finish();
+}
+```
+
+**Правильно:**
+
+```js
+if (test.currentQuestionIndex === test.questions.length - 1) {
+    test.finish();
+}
+```
+
+### Не должно быть неиспользуемых переменных.
 
 **Неправильно:**
 
@@ -101,37 +71,13 @@ $slider.css({
 });
 ```
 
-* Переменные объявляются на отдельных строках.
+### Переменные объявляются на отдельных строках
 
 **Неправильно:**
 
 ```js
 function showPage($page) {
-    let $currentPage = $('.js-page--current'),
-        $header = $('.js-header'),
-        $footer = $('.js-footer');
-
-    new TimelineMax()
-        .to([
-            $header,
-            $footer,
-            $currentPage,
-        ], 1, {
-            opacity: 0,
-            onComplete() {
-                $currentPage.removeClass('page--current');
-            },
-        })
-        .from([
-            $header,
-            $footer,
-            $page,
-        ], 1, {
-            clearProps: 'all',
-            onStart() {
-                $page.addClass('page--current');
-            },
-        });
+    let $currentPage = $('.js-page--current'), $header = $('.js-header'), $footer = $('.js-footer');
 }
 ```
 
@@ -139,35 +85,13 @@ function showPage($page) {
 
 ```js
 function showPage($page) {
-    let $currentPage = $('.js-page--current');
-    let $header = $('.js-header');
-    let $footer = $('.js-footer');
-
-    new TimelineMax()
-        .to([
-            $header,
-            $footer,
-            $currentPage,
-        ], 1, {
-            opacity: 0,
-            onComplete() {
-                $currentPage.removeClass('page--current');
-            },
-        })
-        .from([
-            $header,
-            $footer,
-            $page,
-        ], 1, {
-            clearProps: 'all',
-            onStart() {
-                $page.addClass('page--current');
-            },
-        });
+    let $currentPage = $('.js-page--current')
+    let $header = $('.js-header')
+    let $footer = $('.js-footer')
 }
 ```
 
-* Не следует сокращать названия переменных и функций.
+### Не следует сокращать названия переменных и функций.
 
 **Неправильно:**
 
@@ -186,18 +110,18 @@ $('.js-scroll').on('click', (e) => {
 **Правильно:**
 
 ```js
-$('.js-scroll').on('click', (event) => {
-    let $link = $(event.currentTarget);
-    let href = $link.attr('href');
-    let top = $(href).offset().top;
+$('.js-scroll').on('click', (e) => {
+    let $link = $(e.currentTarget)
+    let href = $link.attr('href')
+    let top = $(href).offset().top
 
     $('html, body').animate({
         scrollTop: top,
-    }, 500);
-});
+    }, 500)
+})
 ```
 
-* После определения переменных следует оставлять пустую строку.
+### После определения переменных следует оставлять пустую строку.
 
 **Неправильно:**
 
@@ -214,17 +138,17 @@ $('form').on('submit', (event) => {
 **Правильно:**
 
 ```js
-$('form').on('submit', (event) => {
-    let $form = $(event.currentTarget);
-    let $button = $form.find('submit');
+$('form').on('submit', (e) => {
+    let $form = $(e.currentTarget)
+    let $button = $form.find('submit')
 
-    event.preventDefault();
-    $button.prop('disabled', true);
-    submitForm($form);
-});
+    e.preventDefault()
+    $button.prop('disabled', true)
+    submitForm($form)
+})
 ```
 
-* Операторы в выражениях отделяются одним пробелом.
+### Операторы в выражениях отделяются одним пробелом.
 
 **Неправильно:**
 
@@ -238,11 +162,11 @@ function sum(a, b) {
 
 ```js
 function sum(a, b) {
-    return a + b;
+    return a + b
 }
 ```
 
-* Перед `return` следует оставлять пустую строку.
+### Перед `return` следует оставлять пустую строку.
 
 **Неправильно:**
 
@@ -265,21 +189,21 @@ function getQueryParam(key) {
 
 ```js
 function getQueryParam(key) {
-    let params = location.search.slice(1).split('&');
+    let params = location.search.slice(1).split('&')
 
     for (let param of params) {
-        param = param.split('&');
+        param = param.split('&')
 
         if (param[0] === key) {
-            return param[1];
+            return param[1]
         }
     }
 
-    return null;
+    return null
 }
 ```
 
-* Многострочные конструкции и выражения отделяются пустой строкой.
+### Многострочные конструкции и выражения отделяются пустой строкой.
 
 **Неправильно:**
 
@@ -307,148 +231,59 @@ if (x > 5) {
 if (!items.length) {
     items.push(42);
 }
-switch (number) {
-    case 4:
-        console.log('a');
-        break;
-    case 5:
-        console.log('b');
-        break;
-    case 1:
-        console.log('c');
-        break;
-    default:
-        console.log('d');
-        break;
-}
-for (let i = 0; i < 10; i++) {
-    y *= i;
-}
-$('.js-button').on('click', (event) => {
-    event.preventDefault();
-    run();
-});
 ```
 
 **Правильно:**
 
 ```js
 function f() {
-    console.log('f');
+    console.log('f')
 }
 
 function g() {
-    console.log('g');
+    console.log('g')
 }
 
 let timer = {
     start() {
-        this.stop();
+        this.stop()
 
         this.intervalId = setInterval(() => {
-            console.log('Tick');
-        }, 1000);
+            console.log('Tick')
+        }, 1000)
     },
 
     stop() {
-        clearInterval(this.intervalId);
-    },
-};
+        clearInterval(this.intervalId)
+    }
+}
 
 if (x > 5) {
-    x = 0;
+    x = 0
 }
 
 if (!items.length) {
-    items.push(42);
+    items.push(42)
 }
-
-switch (number) {
-    case 4:
-        console.log('a');
-        break;
-
-    case 5:
-        console.log('b');
-        break;
-
-    case 1:
-        console.log('c');
-        break;
-
-    default:
-        console.log('d');
-        break;
-}
-
-for (let i = 0; i < 10; i++) {
-    y *= i;
-}
-
-$('.js-button').on('click', (event) => {
-    event.preventDefault();
-    run();
-});
 ```
 
-* Не более одной пустой строки подряд.
+### Не следует использовать однострочную запись `if` без фигурных скобок.
 
 **Неправильно:**
 
 ```js
-$('.js-scroll-to').on('click', (event) => {
-    event.preventDefault();
-    scrollTo(event.currentTarget.href);
-});
-
-
-$('.js-close').on('click', (event) => {
-    $(event.currentTarget).parent().removeClass('is-open');
-});
-```
-
-**Правильно:**
-
-```js
-$('.js-scroll-to').on('click', (event) => {
-    event.preventDefault();
-    scrollTo(event.currentTarget.href);
-});
-
-$('.js-close').on('click', (event) => {
-    $(event.currentTarget).parent().removeClass('is-open');
-});
-```
-
-* Не следует использовать однострочную запись `if` без фигурных скобок.
-
-**Неправильно:**
-
-```js
-function resizeItems() {
     if (!items.length) return;
-
-    items.forEach((item) => {
-        item.resize();
-    });
-}
 ```
 
 **Правильно:**
 
 ```js
-function resizeItems() {
     if (!items.length) {
-        return;
+        return
     }
-
-    items.forEach((item) => {
-        item.resize();
-    });
-}
 ```
 
-* Для строк используются одинарные кавычки.
+### Для строк используются одинарные кавычки.
 
 **Неправильно:**
 
@@ -459,7 +294,7 @@ let name = "John Doe"
 **Правильно:**
 
 ```js
-let name = 'John Doe';
+let name = 'John Doe'
 ```
 
 # ES6 возможности
@@ -486,17 +321,17 @@ function getDateTime() {
 ```js
 function getDateTime() {
     let now = new Date();
-    let year = now.getFullYear().toString().padStart(2, '0');
-    let month = (now.getMonth() + 1).toString().padStart(2, '0');
-    let day = now.getDate().toString().padStart(2, '0');
-    let hours = now.getHours().toString().padStart(2, '0');
-    let minutes = now.getMinutes().toString().padStart(2, '0');
+    let year = now.getFullYear().toString().padStart(2, '0')
+    let month = (now.getMonth() + 1).toString().padStart(2, '0')
+    let day = now.getDate().toString().padStart(2, '0')
+    let hours = now.getHours().toString().padStart(2, '0')
+    let minutes = now.getMinutes().toString().padStart(2, '0')
 
-    return `${year}.${month}.${day} ${hours}:${minutes}`;
+    return `${year}.${month}.${day} ${hours}:${minutes}`
 }
 ```
 
-* Используется `let` вместо `var`.
+### Используется `let` вместо `var`.
 
 **Неправильно:**
 
@@ -509,13 +344,13 @@ var fullname = `${name} ${surname}`;
 **Правильно:**
 
 ```js
-let name = 'John';
-let surname = 'Doe';
-let fullname = `${name} ${surname}`;
+let name = 'John'
+let surname = 'Doe'
+let fullname = `${name} ${surname}`
 ```
 
 
-* Используются стрелочные функции вместо анонимных.
+### Используются стрелочные функции вместо анонимных.
 
 **Неправильно:**
 
@@ -529,13 +364,13 @@ $('form').on('submit', function (event) {
 **Правильно:**
 
 ```js
-$('form').on('submit', (event) => {
-    event.preventDefault();
-    submitForm(event.currentTarget);
-});
+$('form').on('submit', (e) => {
+    e.preventDefault()
+    submitForm(e.currentTarget)
+})
 ```
 
-* Следует использовать сокращенную запись ключей объекта.
+### Следует использовать сокращенную запись ключей объекта.
 
 **Неправильно:**
 
@@ -556,18 +391,18 @@ function getObjectPosition(object) {
 
 ```js
 function getObjectPosition(object) {
-    let $offset = $(object).offset();
-    let x = $offset.top;
-    let y = $offset.left;
+    let $offset = $(object).offset()
+    let x = $offset.top
+    let y = $offset.left
 
     return {
         x,
-        y,
-    };
+        y
+    }
 }
 ```
 
-* Следует использовать сокращенную запись методов объекта.
+### Следует использовать сокращенную запись методов объекта.
 
 **Неправильно:**
 
@@ -588,7 +423,7 @@ TweenMax.from($element, 1, {
     opacity: 0,
     clearProps: 'all',
     onStart() {
-        $element.removeClass('is-hidden');
-    },
-});
+        $element.removeClass('is-hidden')
+    }
+})
 ```
