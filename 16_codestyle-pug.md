@@ -341,7 +341,7 @@ JSON в атрибуте записывается в виде JS-объекта,
 
 # Использование `&attributes`
 
-`&attributes` либо в миксинах, либо в том случае, если необходимо задать множество атрибутов элемента с помощью
+`&attributes` используется либо в миксинах, либо в том случае, если необходимо задать множество атрибутов элемента с помощью
 переменной.
 
 **Неправильно:**
@@ -552,9 +552,9 @@ if products.length
         // ...
 ```
 
-* `unless` — предназначена для замены условий c отрицанием `if !someVar`. ПОвышает читаемость
+* `unless` — предназначена для замены условий c отрицанием `if !someVar`. Повышает читаемость
 
-* `case` — предназначена для условий. Практически не используется.
+* `case` — предназначена для множественных условий. Практически не используется.
 
 * `each` — предназначена для создания циклов.
 
@@ -587,35 +587,9 @@ each i in Array.from(Array(10).keys())
 
 * `while` — не используется.
 
-# Наследование
-
-Базовый шаблон (`base.pug`) не предназначен для редактирования. Не стоит в нем задавать значения переменных, подключать
-какие-либо скрипты или стили, и уж тем более писать код страницы. На то он и базовый. В нем описывается самый основной
-код страницы. Допустимо лишь подключать миксины в этом файле.
-
-Если возникает необходимость изменить этот файл (подключить какие-то стили или скрипты, добавить шапку и подвал сайта),
-то лучше создать другой базовый шаблон (например `custom-base.pug`) унаследованный от `base.pug` (а то и вовсе
-написанный с нуля), и уже работать с этим файлом и наследовать страницы от него.
-
-При переопределении блоков можно использовать сокращенную запись.
-
-**Неправильно:**
-
-```jade
-block append content
-    // ...
-```
-
-**Правильно:**
-
-```jade
-append content
-    // ...
-```
-
 # Подключение файлов
 
-Если страница состоит из нескольких независимых блоков, то каждый следует вынести в отдельный файл.
+Если страница состоит из нескольких независимых блоков, то каждый следует вынести в отдельный файл или в миксин
 
 **Неправильно:**
 
@@ -641,14 +615,14 @@ append content
 **Правильно:**
 
 ```jade
-include pug/header
-include pug/banner
++header()
++banner()
 .container
     include pug/sidebar
     .content
-        include pug/filter
-        include pug/products
-        include pug/pagination
+        +filter()
+        +products()
+        +pagination()
 ```
 
 Если на странице используются какие-либо счетчики (Google Analytics, Яндекс Метрика и тому подобноее), то этот также
@@ -720,22 +694,22 @@ include pug/header
 Создаем миксин в файле src/pug/mixins/product.pug
 
 ```jade
-mixin product(options)
+mixin product(props = {})
     .product&attributes(attributes)
-        a.product__image(href=options.href)
-            img(src=options.image alt="")
-        a.product__title(href=options.href)= options.title
-        .product__description= options.description
-        .product__price= options.price
-        a.product__link(href=options.href)
+        a.product__image(href=props.href)
+            img(src=props.image alt="")
+        a.product__title(href=props.href)= props.title
+        .product__description= props.description
+        .product__price= props.price
+        a.product__link(href=props.href)
             | Подробнее
 ```
 
-Подключаем миксин в `base.pug`:
+Подключаем миксин в `components.pug`:
 
 ```jade
-include mixins/svg
-include mixins/product
+include block/card
+include block/product
 ```
 
 После можно использовать созданный миксин на любой странице:
