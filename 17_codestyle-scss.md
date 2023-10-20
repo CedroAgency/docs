@@ -95,10 +95,10 @@ $color-cod-gray: #1a1a1a;
     margin: 0 auto;
     padding: 15px;
     max-width: 1000px;
-    background: url("../images/header.jpg") 50% 50% no-repeat;
+    background: url('../images/header.jpg') 50% 50% no-repeat;
 
     @include retina {
-        background-image: url("../images/header@2x.jpg");
+        background-image: url('../images/header@2x.jpg');
     }
 
     @media (min-width: 1000px) {
@@ -118,7 +118,7 @@ $color-cod-gray: #1a1a1a;
 
 
     &::before {
-        content: "";
+        content: '';
     }
 }
 ```
@@ -402,7 +402,7 @@ a[target=_blank]::after {
 
 ```scss
 a[target="_blank"]::after {
-    content: "";
+    content: '';
     display: inline-block;
     width: 15px;
     height: 15px;
