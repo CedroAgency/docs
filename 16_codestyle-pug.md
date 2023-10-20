@@ -410,15 +410,18 @@ Pug позволяет использовать JS в шаблонах:
 
 ```jade
 // Однострочная запись
-- title = 'Title'
-- description = 'Description'
+- let title = 'Title'
+- let description = 'Description'
+- const ROOT_PATH = './'
 
 // Многострочная запись
 -
-    attrs = {
+    let attrs = {
         class: 'no-js',
         lang: 'ru'
     }
+
+    let url = '#'
 ```
 
 Не следует использовать эту возможность для создания условий и циклов, так как в Pug уже имеются специальные
