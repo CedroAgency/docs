@@ -9,6 +9,49 @@
 * `!important` используется только для того, чтобы перебить значение `style`-атрибута.
 
 
+### Используем максимально плоскую структура, без лишней вложенности. Максимальная вложенность в Блоке - 2 уровня.
+
+**Неправильно:**
+
+```scss
+.block {
+    border: 1px solid red;
+
+    &__list {
+        list-style: none;
+
+        &-item {
+            padding: 10px;
+
+            &--active {
+                font-weight: bold;
+            }
+        }
+    }
+}
+```
+
+**Правильно:**
+
+```scss
+.block {
+    border: 1px solid red;
+
+    &__list {
+        list-style: none;
+    }
+
+    &__list-item {
+        padding: 10px;
+    }
+
+    &__list-item--active {
+        font-weight: bold;
+    }
+}
+```
+
+
 ### В коде не должно быть вендорных префиксов (есть исключения)
 
 **Неправильно:**
