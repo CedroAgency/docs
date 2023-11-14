@@ -23,7 +23,7 @@
   .header__top
     button.header__top__burger
     a.header__top__logo(href="#")
-    
+
   .header__bottom
     .header__nav
       .header__nav__item
@@ -41,7 +41,7 @@ header.header.header--fixed
   .header__top
     button.header__burger(type="button")
     a.header__logo(href="#")
-    
+
   .header__bottom
     nav.nav
       .nav__item
@@ -59,7 +59,7 @@ header.header.is-fixed
   .header__top
     button.header__burger(type="button")
     a.header__logo(href="#")
-    
+
   .header__bottom
     nav.nav
       .nav__item
