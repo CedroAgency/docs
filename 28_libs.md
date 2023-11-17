@@ -42,5 +42,8 @@
 ## Отключение скролла
 * [tua-body-scroll-lock](https://github.com/tuax/tua-body-scroll-lock)
 
+## Плавный скролл страницы
+* [lenis](https://github.com/studio-freight/lenis)
+
 ## Модальные окна
 * [hystModal](https://addmorescripts.github.io/hystModal/)

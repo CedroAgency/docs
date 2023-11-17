@@ -5,9 +5,6 @@
 * Генерация SVG-спрайтов и оптимизированной графики.
 * Шаблонизация с помощью [Pug](https://pugjs.org/).
 * CSS-препроцессор [SCSS](http://sass-lang.com/) и [Autoprefixer](https://autoprefixer.github.io/ru/).
-* ES6+ и [jQuery](https://jquery.com/) *не надо использовать jQuery*.
-* Встроенное определение устройства, браузера и операционной системы пользователя.
+* ES6+ с использование [Babel](https://babeljs.io)
 * Проверка кода линтерами ([pug-lint](https://www.npmjs.com/package/pug-lint), [stylelint](https://stylelint.io/), [ESLint](http://eslint.org/)).
 * [Browsersync](https://www.browsersync.io/), автоматическое обновление страницы при разработке.
-* Возможность быстро создать архив проекта.
-* Множество дополнительных параметров сборки.

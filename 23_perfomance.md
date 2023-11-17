@@ -32,7 +32,7 @@
 **неправильно**
 
 ```js
-const $header = $('.js-header');
+const $header = $('#js-header');
 const $headerNav = $('.js-header_nav');
 const $headerItem = $('.js-header_item');
 
@@ -48,7 +48,7 @@ function getItemTopPosition() {
 **правильно**
 
 ```js
-const $header = $('.js-header');
+const $header = $('#js-header');
 const $headerNav = $header.find('.header_nav_js');
 const $headerItem = $headerNav.find('.header_item_js');
 

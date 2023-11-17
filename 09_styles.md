@@ -45,8 +45,8 @@ gulp scss
 cedro-template
 └── build
     └── css
-        ├── main.css
-        └── main.css.map
+        ├── style.css
+        └── style.css.map
 ```
 
 ## Правила написания кода
