@@ -635,6 +635,23 @@ $color-black: #000000;
 $color-black: #000;
 ```
 
+### Для записи цвета в RGB или HSL формате, используем запись без запятых
+
+**Неправильно:**
+
+```scss
+background-color: rgb(0, 0, 0);
+background-color: rgba(0, 0, 0, 0.5);
+```
+
+**Правильно:**
+
+```scss
+background-color: rgb(0 0 0);
+background-color: rgb(0 0 0 / 0.5);
+background-color: rgb(0 0 0 / 50%);
+```
+
 ### При записи `rgba`-цвета задается `#`-значением или переменной.
 
 **Неправильно:**
