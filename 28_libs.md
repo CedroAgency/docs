@@ -47,3 +47,6 @@
 
 ## Модальные окна
 * [hystModal](https://addmorescripts.github.io/hystModal/)
+
+## Определение ОС и браузера
+* [ua-parser-js](https://github.com/faisalman/ua-parser-js)

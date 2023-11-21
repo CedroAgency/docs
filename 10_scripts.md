@@ -8,60 +8,26 @@
 cedro-template
 └── src
     └── js
-        ├── vendor
+        ├── libs
         │   └── .keep
-        ├── main.js
-        └── vendor.js
+        ├── assets.js
+        └── main.js
 ```
 
 За сборку и преобразование JS отвечает задача `js`:
 
 ```bash
-gulp js
+gulp scripts
 ```
 
-После выполнения команды в папке `build/js` появятся файлы `main.js` и `vendor.js`:
+После выполнения команды в папке `build/js` появятся файлы `main.js` и `assets.js`:
 
 ```text
 cedro-template
 └── build
     └── js
-        ├── main.js
-        └── vendor.js
-```
-
-Также дополнительно подключены библиотеки:
-
-* [jQuery](https://jquery.com/)
-* [cedro-ua-parser](https://github.com/cedro-team/cedro-ua-parser)
-
-[cedro-ua-parser](https://github.com/cedro-team/cedro-ua-parser) основана на
-[ua-parser-js](https://github.com/faisalman/ua-parser-js) и отвечает за определение устройства, браузера и операционной
-системы пользователя, а также автоматически проставляет классы `<html>` элементу:
-
-* `.is-os-mac-os`
-* `.is-os-windows`
-* `.is-os-linux`
-* `.is-os-android`
-* `.is-os-ios`
-* `.is-device-mobile`
-* `.is-device-tablet`
-* `.is-device-desktop`
-* `.is-engine-webkit`
-* `.is-engine-gecko`
-* `.is-browser-chrome`
-* `.is-browser-firefox`
-* `.is-browser-ie`
-* `.is-browser-safari`
-
-Данные классы можно использовать для стилизации элементов:
-
-```scss
-.for-desktop {
-    .is-device-mobile & {
-        display: none;
-    }
-}
+        ├── assets.js
+        └── main.js
 ```
 
 ## Правила написания кода
@@ -73,139 +39,20 @@ cedro-template
 **Неправильно:**
 
 ```js
-$('.js-elements').each((i, e) => {
-    // ...
-});
+const s = '13px'
+let blockW = '40px'
 ```
 
 **Правильно:**
 
 ```js
-$('.js-elements').each((index, element) => {
-    // ...
-});
+const fontSize = '13px'
+let blockWidth = '40px'
 ```
 
-Исключение могут составить имена счетчиков в цикле (`i`, `j`, `k`):
+Исключением являются устоявщиеся и общепонятные сокращения. Такие как `i` - для index, `e` для event, `el` для element и т.п.
 
-```js
-for (let i = 0; i < 10; i++) {
-    // ...
-}
-```
 
-### Именование jQuery-переменных
-
-Название переменных, являющихся jQuery-объектами, следует начинать с `$`.
-
-**Неправильно:**
-
-```js
-let element = $('.js-elements');
-```
-
-**Правильно:**
-
-```js
-let $element = $('.js-elements');
-```
-
-### jQuery-селекторы
-
-Каждому селектору который предполагается для выборки в js нужно добавлять префикс `js` в d классе.
-Следует избегать дублирования jQuery-селекторов.
-Если обращение к элементу происходит многократно, то jQuery-объект можно сохранить в отдельную переменную, либо переписать код так, чтобы избежать дублирования.
-**Неправильно:**
-
-```js
-$('.elements').on('click', () => {
-    // ...
-});
-
-$('.js-elements').on('click', () => {
-    // ...
-});
-```
-
-**Правильно:**
-
-```js
-let $elements = $('.js-elements');
-
-$elements.on('click', () => {
-    // ...
-});
-
-$elements.on('mouseenter', () => {
-    // ...
-});
-```
-
-**Неправильно:**
-
-```js
-$('.js-elements').on('click', () => {
-    // ...
-});
-
-$('.js-elements').on('mouseenter', () => {
-    // ...
-});
-```
-
-**Правильно:**
-
-```js
-let $element = $('.js-elements');
-
-$element.on('click', () => {
-    // ...
-});
-
-$element.on('mouseenter', () => {
-    // ...
-});
-```
-
-Или так:
-
-```js
-$('.js-elements')
-    .on('click', () => {
-        // ...
-    })
-    .on('mouseenter', () => {
-        // ...
-    });
-```
-
-### Обработка событий с помощью jQuery
-
-Для создания обработчика событий следует использовать функцию [`.on()`](http://api.jquery.com/on/).
-
-**Неправильно:**
-
-```js
-$('button').click(() => {
-    // ...
-});
-
-$('form').submit(() => {
-    // ...
-});
-```
-
-**Правильно:**
-
-```js
-$('button').on('click', () => {
-    // ...
-});
-
-$('form').on('submit', () => {
-    // ...
-});
-```
 
 ## Использование линтера
 
@@ -216,7 +63,7 @@ $('form').on('submit', () => {
 Проверка осуществляется с помощью задачи `lint:js`:
 
 ```bash
-gulp lint:js
+npm run lint:js
 ```
 
 Пример использования:
@@ -256,17 +103,5 @@ ESlint сообщает о 14 найденных ошибках, причем б
 За это отвечает ключ `--fix`, который можно указать при запуске задачи `lint:js`:
 
 ```bash
-gulp lint:js --fix
-```
-
-Исправленный код:
-
-```js
-let $form = $('.js-form');
-
-$form.on('submit', () => {
-    $.post('ajax.php', (data) => {
-        $('.js-result').html(data);
-    });
-});
+nmp run lint:js --fix
 ```
