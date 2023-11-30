@@ -6,6 +6,20 @@
 * Максимальное количество строк в одном файле — 350
 * В конце файла обязательна пустая строка
 
+### Не ставим расширение при импорте модуля
+**Неправильно:**
+
+```js
+import initSwiper from './modules/init-swiper.js'
+import initMap from './modules/init-map.js'
+```
+
+**Правильно:**
+
+```js
+import initSwiper from './modules/sliders/init-swiper'
+import initMap from './modules/init-map-contact'
+```
 
 ### Не ставим `;` в конце выражений
 **Неправильно:**
