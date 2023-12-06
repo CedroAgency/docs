@@ -52,6 +52,25 @@ let blockWidth = '40px'
 
 Исключением являются устоявщиеся и общепонятные сокращения. Такие как `i` - для index, `e` для event, `el` для element и т.п.
 
+### Именования для boolean
+Из названия переменных с типом boolean и функций возвращающих boolean, должно быть понятно что они могут быть только true/false
+
+**Неправильно:**
+
+```js
+const сlass = block.classList.contains('active')
+const positiveNumber = (number) = () => number > 0
+```
+
+**Правильно:**
+
+```js
+const hasClass = block.classList.contains('active')
+const isPositiveNumber = (number) => number > 0
+```
+
+
+
 
 
 ## Использование линтера
