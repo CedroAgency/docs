@@ -1,4 +1,4 @@
-```
+```php
 use Bitrix\Highloadblock as HL;
 use Bitrix\Main\Entity;
 function na($param)
