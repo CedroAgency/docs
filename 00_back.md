@@ -15,7 +15,7 @@ contact-container
 5. Стараемся вырезать битрикс по минимуму, чтобы при необходимости можно было быстро вывести доп.свойства (и это мог сделать клиент сам), добавить торговые предложения, отображение скидок и т.д.
 6. Используем инфо- и highload-блоки везде, где есть однотипный контент - слайдеры, новости, повторяющиеся преимущества. В дальнейшем это ускорит наполнение и поддержку сайта.
 7. Используем включаемые области во всех остальных случаях. Желательно для одного и то же номера телефона использовать одну и ту же область на всем сайте. Во включаемых областях email и телефоном не должно быть ссылок. Используем конструкции:
-```
+```php
     Для телефона:
     <a href="tel:<?echo preg_replace('/[^+0-9]/', '', $APPLICATION->GetFileContent($_SERVER['DOCUMENT_ROOT'].'/local/include_areas/template/phone.php')); ?>">
         <?$APPLICATION->IncludeFile($APPLICATION->GetTemplatePath('/local/include_areas/template/phone.php'),Array(),Array('MODE'=>'html'));?>
@@ -27,7 +27,7 @@ contact-container
     </a>
 ```
 8. Подключение стилей и js производим с помощью функций битры
-```
+```php
 $APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH."/js/file.js" );
 $APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH."/js/file.css", true);
 
