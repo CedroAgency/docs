@@ -1,5 +1,6 @@
 # Основные возможности и используемые технологии
 
+## Для чистой вёрстки
 * Система сборки [Gulp](https://gulpjs.com/)
 * Оптимизация изображений.
 * Генерация SVG-спрайтов и оптимизированной графики.
@@ -8,3 +9,6 @@
 * ES6+ с использование [Babel](https://babeljs.io)
 * Проверка кода линтерами ([pug-lint](https://www.npmjs.com/package/pug-lint), [stylelint](https://stylelint.io/), [ESLint](http://eslint.org/)).
 * [Browsersync](https://www.browsersync.io/), автоматическое обновление страницы при разработке.
+
+## Для React
+* [NEXT.js](https://nextjs.org)
