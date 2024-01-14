@@ -1,6 +1,9 @@
 ## Работа с AJAX
 * [AXIOS](https://github.com/axios/axios)
 
+## Работа с Cookie
+* [js-cookie](https://github.com/js-cookie/js-cookie)
+
 ## Прогресс загрузки страницы
 * [PACE](https://github.com/CodeByZach/pace)
 
