@@ -1,3 +1,89 @@
+# Миксины
+
+Если на сайте имеется какой-либо шаблонный блок или компонент (кнопка, карточка, статья), который встречается более
+одного раза, то его следует вынести в отдельный миксин.
+
+**Неправильно:**
+
+```jade
+.products
+    .product
+        a.product__image(href="/product/1")
+            img(src="/images/image-1.jpg" alt="")
+        a.product__title(href="/product/1")
+            | Название товара
+        .product__description
+            | Описание товара
+        .product__price
+            | 12345
+        a.product__link(href="/product/1")
+            | Подробнее
+
+    .product
+        a.product__image(href="/product/2")
+            img(src="/images/image-2.jpg" alt="")
+        a.product__title(href="/product/2")
+            | Название товара
+        .product__description
+            | Описание товара
+        .product__price
+            | 67890
+        a.product__link(href="/product/2")
+            | Подробнее
+```
+
+**Правильно:**
+
+Создаем миксин
+
+```jade
+mixin product(props = {})
+    .product&attributes(attributes)
+        a.product__image(href=props.href)
+            img(src=props.image alt="")
+        a.product__title(href=props.href)= props.title
+        .product__description= props.description
+        .product__price= props.price
+        a.product__link(href=props.href)
+            | Подробнее
+```
+
+Подключаем миксин в `components.pug`:
+
+```jade
+include block/card
+include block/product
+```
+
+После можно использовать созданный миксин на любой странице:
+
+```jade
+.products
+    +product({
+        href: '/product/1',
+        image: '/images/image-1.jpg',
+        title: 'Название товара',
+        description: 'Описание товара',
+        price: 12345
+    })
+
+    +product({
+        href: '/product/2',
+        image: '/images/image-2.jpg',
+        title: 'Название товара',
+        description: 'Описание товара',
+        price: 67890
+    })
+```
+
+
+В миксины всегда передаём объект `props` и прокидываем атрибуты на основной блок:
+```jade
+mixin block(props = {})
+
+    .block&attributes(attributes)
+```
+
 # Синтаксис и форматирование
 Между большими блоками кода следует оставлять одну пустую строку или дополнять комментарием
 
@@ -54,15 +140,6 @@
 .navigation
     a.navigation__link(href="/catalog?page=2")
         | Следующая страница
-```
-
-# Миксины
-
-В миксины всегда передаём объект `props` и прокидываем атрибуты на основной блок:
-```jade
-mixin block(props = {})
-
-    .block&attributes(attributes)
 ```
 
 # Однострочная вложенность
@@ -660,97 +737,8 @@ include pug/header
         include ../images/logo.svg
 ```
 
-# Миксины
 
-Если на сайте имеется какой-либо шаблонный блок или компонент (кнопка, карточка, статья), который встречается более
-одного раза, то его следует вынести в отдельный миксин.
 
-**Неправильно:**
-
-```jade
-.products
-    .product
-        a.product__image(href="/product/1")
-            img(src="/images/image-1.jpg" alt="")
-        a.product__title(href="/product/1")
-            | Название товара
-        .product__description
-            | Описание товара
-        .product__price
-            | 12345
-        a.product__link(href="/product/1")
-            | Подробнее
-
-    .product
-        a.product__image(href="/product/2")
-            img(src="/images/image-2.jpg" alt="")
-        a.product__title(href="/product/2")
-            | Название товара
-        .product__description
-            | Описание товара
-        .product__price
-            | 67890
-        a.product__link(href="/product/2")
-            | Подробнее
-```
-
-**Правильно:**
-
-Создаем миксин в файле src/pug/mixins/product.pug
-
-```jade
-mixin product(props = {})
-    .product&attributes(attributes)
-        a.product__image(href=props.href)
-            img(src=props.image alt="")
-        a.product__title(href=props.href)= props.title
-        .product__description= props.description
-        .product__price= props.price
-        a.product__link(href=props.href)
-            | Подробнее
-```
-
-Подключаем миксин в `components.pug`:
-
-```jade
-include block/card
-include block/product
-```
-
-После можно использовать созданный миксин на любой странице:
-
-```jade
-.products
-    +product({
-        href: '/product/1',
-        image: '/images/image-1.jpg',
-        title: 'Название товара',
-        description: 'Описание товара',
-        price: 12345
-    })
-
-    +product({
-        href: '/product/2',
-        image: '/images/image-2.jpg',
-        title: 'Название товара',
-        description: 'Описание товара',
-        price: 67890
-    })
-```
-
-В миксин также можно передать содержимое (в основном используется при передаче большого количества контента, например
-в статьях):
-
-```jade
-mixin article(title)
-    article.article
-        h1.article__title= title
-        .article__content
-            block
-
-+article('Заголовок статьи')
-    | Содержимое статьи
-```
 
 # Комментарии
 
