@@ -5,6 +5,7 @@
 * [Структура проекта](24_structure.md)
 * [Работа с Git](24_git.md)
 * [Работа с микроразметкой](30_microdata.md)
+* **[Настройка редактора кода](35_options.md)**
 
 ## Для бэка
 
@@ -13,17 +14,16 @@
 * [Стартовый набор файлов для проекта на Bitrix](https://github.com/CedroAgency/backend_bx_starter_pack)
 * [Composer и Bitrix Framework](32_composer.md)
 * [Создание .webp изображений инфоблока "на лету"](29_webp-on-fly.md)
-* *** [СДАЧА ПРОЕКТА](33_final-step.md)**
+* **[СДАЧА ПРОЕКТА](33_final-step.md)**
 
 ## Для фронта
 
 * **[ОБЩИЕ ТРЕБОВАНИЯ К ВЁРСТКЕ](00_front.md)**
 * [Общие требования к React](34_codestyle-react.md)
 * [Основные возможности и используемые технологии](01_technologies.md)
-    * [Используемые библиотеки и фреймворки](28_libs.md)
+    * [Библиотеки для вёрстки](28_libs.md)
+    * [React компоненты](36_libs-react.md)
 * [Начало работы](03_installation.md)
-* [Gulp-задачи](04_tasks.md)
-* [Структура папок и файлов](05_structure.md)
 * [Подключение сторонних библиотек](06_libraries.md)
 * [Работа с изображениями](07_images.md)
     * [Работа с SVG-спрайтами](07_images.md#Работа-с-svg-спрайтами)
@@ -44,13 +44,16 @@
 * [Оформление Pug-кода](16_codestyle-pug.md)
 * [Оформление SCSS-кода](17_codestyle-scss.md)
 * [Оформление JavaScript-кода](18_codestyle-javascript.md)
-* [Кроссбраузерность и адаптивность](22_crossbrowser_adaptive.md)
 * Дополнительная информация
     * [Работа с video.js](19_video-js.md)
     * [Работа с HLS](20_hls.md)
     * [Базовая валидация форм](27_validation.md)
-    * [Производительность](23_perfomance.md)
-    * [Подробный чеклист по тестированию сайтов](25_checklist.md)
-    * [Короткий чеклист по тестированию сайтов](26_short_checklist.md)
-    * [SEO](31_seo.md)
 
+
+## Тестирование
+
+* [Кроссбраузерность и адаптивность](22_crossbrowser_adaptive.md)
+* [Производительность](23_perfomance.md)
+* [Короткий чеклист по тестированию сайтов](26_short_checklist.md)
+* [Подробный чеклист по тестированию сайтов](25_checklist.md)
+* [SEO](31_seo.md)

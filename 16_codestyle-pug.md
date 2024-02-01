@@ -1,12 +1,91 @@
+# Миксины
+
+Если на сайте имеется какой-либо шаблонный блок или компонент (кнопка, карточка, статья), который встречается более
+одного раза, то его следует вынести в отдельный миксин.
+
+**Неправильно:**
+
+```jade
+.products
+    .product
+        a.product__image(href="/product/1")
+            img(src="/images/image-1.jpg" alt="")
+        a.product__title(href="/product/1")
+            | Название товара
+        .product__description
+            | Описание товара
+        .product__price
+            | 12345
+        a.product__link(href="/product/1")
+            | Подробнее
+
+    .product
+        a.product__image(href="/product/2")
+            img(src="/images/image-2.jpg" alt="")
+        a.product__title(href="/product/2")
+            | Название товара
+        .product__description
+            | Описание товара
+        .product__price
+            | 67890
+        a.product__link(href="/product/2")
+            | Подробнее
+```
+
+**Правильно:**
+
+Создаем миксин
+
+```jade
+mixin product(props = {})
+    .product&attributes(attributes)
+        a.product__image(href=props.href)
+            img(src=props.image alt="")
+        a.product__title(href=props.href)= props.title
+        .product__description= props.description
+        .product__price= props.price
+        a.product__link(href=props.href)
+            | Подробнее
+```
+
+Подключаем миксин в `components.pug`:
+
+```jade
+include block/card
+include block/product
+```
+
+После можно использовать созданный миксин на любой странице:
+
+```jade
+.products
+    +product({
+        href: '/product/1',
+        image: '/images/image-1.jpg',
+        title: 'Название товара',
+        description: 'Описание товара',
+        price: 12345
+    })
+
+    +product({
+        href: '/product/2',
+        image: '/images/image-2.jpg',
+        title: 'Название товара',
+        description: 'Описание товара',
+        price: 67890
+    })
+```
+
+
+В миксины всегда передаём объект `props` и прокидываем атрибуты на основной блок:
+```jade
+mixin block(props = {})
+
+    .block&attributes(attributes)
+```
+
 # Синтаксис и форматирование
-
-* Для отступов используется 2 пробела
-* Не должно быть пробелов в конце строк или между строками
-* Максимальная длина строки — 120 символов.
-* Максимальное количество строк в одном файле — 350
-
-
-### Между большими блоками кода следует оставлять одну пустую строку или дополнять комментарием
+Между большими блоками кода следует оставлять одну пустую строку или дополнять комментарием
 
 **Неправильно** (нет пустых строк):
 
@@ -514,8 +593,7 @@ Pug позволяет использовать JS в шаблонах:
 
 # Вывод кода
 
-При необходимости записать `<script>` или `<style>` непосредственно в Pug, то можно воспользоваться следующей
-конструкцией:
+При необходимости записать `<script>` или `<style>` непосредственно в Pug, то можно воспользоваться следующей конструкцией:
 
 ```jade
 script.
@@ -533,6 +611,8 @@ style.
         left: -9999px;
     }
 ```
+
+Но настоятельно рекомендуется выносить такой код в отдельные файлы и подключать через `include`
 
 # Управляющие конструкции
 
@@ -628,14 +708,6 @@ each i in Array.from(Array(10).keys())
         +pagination()
 ```
 
-Если на странице используются какие-либо счетчики (Google Analytics, Яндекс Метрика и тому подобноее), то этот также
-следует выносить в отдельный файл:
-
-```jade
-prepend scripts
-    include pug/counters
-```
-
 При подключении Pug-файлов не нужно указывать расширение.
 
 **Неправильно:**
@@ -650,105 +722,19 @@ include pug/header.pug
 include pug/header
 ```
 
-Подключать можно не только Pug, но и любые другие текстовые файлы. Например svg:
+Подключать можно не только Pug, но и любые другие файлы. Например svg:
 
 ```jade
 .header
     a.header__logo(href="/")
-        include ../images/logo.svg
+        include ../img/logo.svg
 ```
-
-# Миксины
-
-Если на сайте имеется какой-либо шаблонный блок или компонент (кнопка, карточка, статья), который встречается более
-одного раза, то его следует вынести в отдельный миксин.
-
-**Неправильно:**
+Если на странице используются какие-либо счетчики (Google Analytics, Яндекс Метрика и тому подобноее), то этот также следует выносить в отдельный файл js:
 
 ```jade
-.products
-    .product
-        a.product__image(href="/product/1")
-            img(src="/images/image-1.jpg" alt="")
-        a.product__title(href="/product/1")
-            | Название товара
-        .product__description
-            | Описание товара
-        .product__price
-            | 12345
-        a.product__link(href="/product/1")
-            | Подробнее
-
-    .product
-        a.product__image(href="/product/2")
-            img(src="/images/image-2.jpg" alt="")
-        a.product__title(href="/product/2")
-            | Название товара
-        .product__description
-            | Описание товара
-        .product__price
-            | 67890
-        a.product__link(href="/product/2")
-            | Подробнее
+    include ../js/ya-counter.js
 ```
 
-**Правильно:**
-
-Создаем миксин в файле src/pug/mixins/product.pug
-
-```jade
-mixin product(props = {})
-    .product&attributes(attributes)
-        a.product__image(href=props.href)
-            img(src=props.image alt="")
-        a.product__title(href=props.href)= props.title
-        .product__description= props.description
-        .product__price= props.price
-        a.product__link(href=props.href)
-            | Подробнее
-```
-
-Подключаем миксин в `components.pug`:
-
-```jade
-include block/card
-include block/product
-```
-
-После можно использовать созданный миксин на любой странице:
-
-```jade
-.products
-    +product({
-        href: '/product/1',
-        image: '/images/image-1.jpg',
-        title: 'Название товара',
-        description: 'Описание товара',
-        price: 12345
-    })
-
-    +product({
-        href: '/product/2',
-        image: '/images/image-2.jpg',
-        title: 'Название товара',
-        description: 'Описание товара',
-        price: 67890
-    })
-```
-
-В миксин также можно передать содержимое (в основном используется при передаче большого количества контента, например
-в статьях):
-
-```jade
-mixin article(title)
-    article.article
-        h1.article__title= title
-        .article__content
-            block
-
-+article('Заголовок статьи')
-    | Содержимое статьи
-```
 
 # Комментарии
 

@@ -20,8 +20,7 @@
 │   │   └── assets.js
 │   ├── img
 │   │   ├── bg
-│   │   ├── content
-│   │   └── .png, .jpg, .svg, .webp
+│   │   └── content
 │   ├── fonts
 ├── index.html
 ├── sitemap.html
