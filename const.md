@@ -1,4 +1,4 @@
-```
+```php
 <?
 define('IBLOCK_CATALOG', 1);
 define('IBLOCK_NEWS', 2);

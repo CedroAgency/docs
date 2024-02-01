@@ -5,6 +5,7 @@
 ## Загрузка composer.json ##
 Готовый файл включен в стартовый набор файлов для проектов на Bitrix, скачать можно по [ссылке](https://github.com/CedroAgency/backend_bx_starter_pack). Файл разместить по адресу
 /local/composer.json.
+
 ```json
 {
   "require": {
