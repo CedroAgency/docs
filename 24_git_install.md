@@ -48,7 +48,7 @@ git remote set-url origin https://GIT_USER_NAME:ACCESS_TOKEN@github.com/CedroAge
 ```
 
 ## Первый коммит
-```
+```bash
 git reset --mixed origin/main
 git add измененные файлы
 git commit -m "комментарий к коммиту"
@@ -59,7 +59,7 @@ git push -u origin main
 
 Использовать только для **ПОЛНОЙ** замены production на main на боевом сервере. 
 
-```
+```bash
 git fetch --all
 git reset --hard origin/main
 git pull origin main
