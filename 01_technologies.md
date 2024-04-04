@@ -11,4 +11,5 @@
 * [Browsersync](https://www.browsersync.io/), автоматическое обновление страницы при разработке.
 
 ## Для React
+* [Vite](https://vitejs.dev)
 * [NEXT.js](https://nextjs.org)
