@@ -1,50 +1,38 @@
 # Работа с изображениями
 
-Изображения следует хранить в папке `src/images`.
-При запуске задачи `images` файлы из папки `src/images` копируются в `build/images`.
+Изображения следует хранить в папке `src/img`.
+При запуске задачи `img` файлы из папки `src/img` копируются в `build/img`.
 
 ```text
 cedro-template
 ├── build
-│   └── images
+│   └── img
 └── src
-    └── images
+    └── img
 ```
 
-Для оптимизации изображений можно использовать задачу `optimize:images`.
+Для оптимизации изображений можно использовать задачу `imagesMin`.
 
-> `optimize:images` оптимизирует только исходные файлы из папки `src/images`!
-
-Предварительно оптимизированные изображения рекомендуется хранить в папке `src/assets/images`.
-В таком случае при запуске задачи `optimize:images` данные файлы не будут затронуты.
-
-```text
-cedro-template
-└── src
-    └── assets
-        └── images
-```
 
 ## Работа с SVG-спрайтами
 
 Принцип работы с SVG-спрайтами:
 
 1. Получаем векторные иконки в формате `.svg` (либо заранее подготовленные, либо экспортируем с помощью редактора).
-   Сохраняем в папку `src/images/sprites/svg`:
+   Сохраняем в папку `src/img/sprite`:
 
    ```text
    cedro-template
    └── src
-       └── images
-           └── sprites
-               └── svg
-                   └── phone.svg
+       └── img
+           └── sprite
+               └── phone.svg
    ```
 
-2. Запускаем задачу `sprites:svg` (если уже запущен `gulp watch` или `gulp`, то данный шаг можно пропустить):
+2. Запускаем задачу `sprite` (если уже запущен `gulp watch` или `gulp`, то данный шаг можно пропустить):
 
    ```bash
-   gulp sprites:svg
+   gulp sprite
    ```
 
 3. Генератор оптимизирует и объединяет иконки в один спрайт:
@@ -52,41 +40,41 @@ cedro-template
    ```text
    cedro-template
    └── build
-       └── images
-           └── sprites.svg
+       └── img
+           └── sprite.svg
    ```
 
    В сборке содержится Pug-миксин для подключения SVG-спрайтов.<br>
-   `src/pug/mixins/svg.pug`:
+   `src\pug\components\utils\icn.pug`:
 
    ```jade
-    mixin svg(name)
-       svg&attributes(attributes)
-           use(xlink:href=`${baseDir}images/sprites.svg#${name}`)
+    mixin icn(name, width, height)
+       svg.icn(
+            width=width
+            height=height
+            aria-hidden="true"
+            role="img"
+        )&attributes(attributes)
+            use(href="#" + name)
    ```
 
 4. Подключаем иконку в Pug:
 
    ```jade
-   footer
-       a(href="tel:+71234567890")
-           +svg("phone")
+       a,phone(href="tel:+71234567890")
+           +icn('icn-phone')
            | +7 (123) 456-78-90
    ```
 
    При необходимости иконку можно стилизовать:
 
    ```scss
-   footer {
-       a {
-           svg {
-               display: inline-block;
-               vertical-align: middle;
-               width: 30px;
-               height: 30px;
-               fill: $color-black;
-           }
-       }
+   .phone {
+        svg {
+            width: 30px;
+            height: 30px;
+            fill: $color-black;
+        }
    }
    ```
 
