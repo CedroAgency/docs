@@ -3,9 +3,10 @@
 Для того чтобы удовлетворять требованиям по SEO - наши проекты должны содержать в себе готовую микроразметку.
 
 1. В проектах по умолчанию используем микроразметку [schema.org](https://schema.org/)
-2. Ифнормация размечаемая по-умолчанию:
+2. Информация размечаемая по-умолчанию:
+
 *[Инофрмация об организации](http://schema.org/Organization)
-```
+```html
 <div itemscope itemtype="http://schema.org/Organization">
   <span itemprop="name">Яндекс</span>
   Контакты:
@@ -21,7 +22,7 @@
 </div>
 ```
 *[Хлебные крошки](https://schema.org/BreadcrumbList)
-```
+```html
 <ol itemscope itemtype="https://schema.org/BreadcrumbList">
   <li itemprop="itemListElement" itemscope
       itemtype="https://schema.org/ListItem">
@@ -39,8 +40,9 @@
 ```
 
 *[Товар](http://schema.org/Product)
+
 *[Торговое предложение](http://schema.org/Offer)
-```
+```html
 <div itemscope itemtype="http://schema.org/Product">
   <div itemprop="name"><h1>Кровать Мелисса с мягкой спинкой</h1></div>
   <a itemprop="image" href=​"products_pictures/large_krovat-mellisa-smyagkoispink.jpg">
