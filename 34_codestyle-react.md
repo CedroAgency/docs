@@ -1,6 +1,6 @@
 # Общие требования к React
 
-### Не импортируем React в каждом файле
+### Не импортируем React, это делается автоматически
 
 ```js
 import React from 'react'
@@ -41,4 +41,22 @@ import { Main } from '../../pages/Main/Main'
 ```js
 import { Main } from 'pages/Main/Main'
 import { Main, Contacts } from '@pages'
+```
+
+### Для импорта CSS модулей, используем сокращение `s`
+
+**Неправильно:**
+```js
+import styles from './Main.module.scss'
+
+..
+<div className={styles.main} />
+```
+
+**Правильно:**
+```js
+import s from './Main.module.scss'
+
+..
+<div className={s.main} />
 ```
