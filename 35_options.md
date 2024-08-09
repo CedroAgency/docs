@@ -11,20 +11,22 @@
 
 Всё это настраивается в редакторе кода один раз. Пример конфигурации для VSCode:
 ```json
+"editor.tabSize": 2,
+"editor.renderWhitespace": "all",
 "files.insertFinalNewline": true,
 "files.trimTrailingWhitespace": true,
-"editor.renderWhitespace": "all",
 "puglint.enable": true,
 "stylelint.validate": [
     "css",
     "postcss",
     "scss"
 ],
+"eslint.enable": true,
 "eslint.format.enable": true,
 ```
 
 ## Желательно
-* Максимальное количество строк в одном файле — 350
-* Максимальная длина строки ~ 150 символов.
+* Максимальное количество строк в одном файле ~350
+* Максимальная длина строки ~150 символов.
 
 Это сильно улучшит восприятие кода, а следовательно и его понимание. Если ваш файл перевалил за 500 строк, это признак того что вы что-то не так делаете и пришло время рефакторить код.
