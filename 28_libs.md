@@ -21,6 +21,7 @@
 ## Дейтпикер
 * [Air Datepicker](https://air-datepicker.com/ru)
 * [Flatpickr](https://flatpickr.js.org)
+* [VanillaCalendar](https://vanilla-calendar.pro/ru)
 
 ## Селекты
 * [Slim Select](http://slimselectjs.com)
