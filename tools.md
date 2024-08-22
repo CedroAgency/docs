@@ -8,3 +8,4 @@
 
 ## Графика
 - [Сжатие, оптимизация, конвертация картинок](https://squoosh.app)
+- [SVG to Base64 конвертер](https://yoksel.github.io/url-encoder/)
