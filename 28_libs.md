@@ -52,5 +52,8 @@
 ## Модальные окна
 * [hystModal](https://addmorescripts.github.io/hystModal/)
 
+## Видео-плеер
+* [plyr](https://plyr.io)
+
 ## Определение ОС и браузера
 * [ua-parser-js](https://github.com/faisalman/ua-parser-js)
