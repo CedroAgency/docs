@@ -23,6 +23,17 @@
 ],
 "eslint.enable": true,
 "eslint.format.enable": true,
+// поддержка css modules для emmet
+"emmet.syntaxProfiles": {
+    "jsx": {
+        "markup.attributes": {
+            "class*": "className",
+        },
+        "markup.valuePrefix": {
+            "class*": "s"
+        }
+    }
+},
 ```
 
 ## Желательно
