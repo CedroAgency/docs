@@ -15,6 +15,7 @@
 * [Стартовый набор файлов для проекта на Bitrix](https://github.com/CedroAgency/backend_bx_starter_pack)
 * [Composer и Bitrix Framework](32_composer.md)
 * [Создание .webp изображений инфоблока "на лету"](29_webp-on-fly.md)
+* [Стандартные решения для .htaccess файла](38_htacess.md)
 * **[СДАЧА ПРОЕКТА](33_final-step.md)**
 
 ## Для фронта
