@@ -60,3 +60,19 @@ import s from './Main.module.scss'
 ..
 <div className={s.main} />
 ```
+
+### Названия интерфейсов начинаем с заглавной "I"
+
+**Неправильно:**
+```js
+interface props {
+  className?: string
+}
+```
+
+**Правильно:**
+```js
+interface IProps {
+  className?: string
+}
+```
